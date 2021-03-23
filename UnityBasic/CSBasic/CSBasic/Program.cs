@@ -33,14 +33,17 @@ namespace CSBasic
         //1.2.플레이어의 공격력만큼 몬스터의 hp가 감소한다.
         //데이터: 공격력, 체력 -> 변수 (정수)
         //알고리즘(연산): 체력이 공격력만큼 감소한다. 체력 - 공격력 = 체력
+        //2. 공격인가 자해인가? -> 대상이 없으면 구별할수 없음. 그러므로 대상이 무엇인지 명확하게 표현해야한다.
         static void PlayerAttackMonsterMain()
         {
             //데이터를 변수로 만든다.
-            int nAttack = 10;
-            int nHP = 100;
+            int nPlayerAttack = 10;
+            int nMonsterHP = 100;
+            Console.WriteLine("MonsterHP - PlayerAtk:" + nMonsterHP + " - " + nPlayerAttack);
             //변수의 값을 분석한 결과대로 나오도록 연산한다.
-            nHP = nHP - nAttack;
+            nMonsterHP = nMonsterHP - nPlayerAttack;
             //다음값을 확인가능하도록 출력하기
+            Console.WriteLine("MonsterHP:" + nMonsterHP);
         }
     }
 }
