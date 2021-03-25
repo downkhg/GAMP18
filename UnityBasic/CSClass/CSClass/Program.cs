@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSClass
 {
@@ -47,23 +48,60 @@ namespace CSClass
         static void Main(string[] args)
         {
             //ObjectTestMain();
-            BattleMain();
+            //BattleMain();
+            GameMain();
         }
 
         static void ObjectTestMain()
         {
-            m_cPlayer = new Player("player", 100, 10);
+            //m_cPlayer = new Player("player", 100, 10);
             m_cPlayer.Attack(m_cMonster);
 
             m_cPlayer.Show();
             m_cMonster.Show();
         }
 
-        static void BattleMain()
+        static void GameMain()
         {
             Player cPlayer = new Player("player", 100, 10);
-            Player cMonster = new Player("slime",20,10);
 
+            List<Player> listMonster = new List<Player>();
+            listMonster.Add(new Player("slime", 20, 10));
+            listMonster.Add(new Player("skeleton", 50, 20));
+            listMonster.Add(new Player("zomble", 100, 20));
+            listMonster.Add(new Player("dragon", 200, 100));
+
+            string strInputText = "";
+            Console.WriteLine("이동할 장소를 선택하세요(숲,던전,무덤,둥지)");
+            strInputText = Console.ReadLine();
+
+            switch (strInputText)
+            {
+                case "숲":
+                    Console.WriteLine(listMonster[0] + "가 서식 하는 " + strInputText + "입니다.");
+                    BattleMain(cPlayer, listMonster[0]);
+                    //실제 게임에서는 해당 출력이후 게임에서 필요한 처리를 장소마다 다르게해야한다.
+                    break;
+                case "던전":
+                    Console.WriteLine(listMonster[1] + "가 서식 하는 " + strInputText + "입니다.");
+                    BattleMain(cPlayer, listMonster[1]);
+                    break;
+                case "무덤":
+                    Console.WriteLine(listMonster[2] + "가 서식 하는 " + strInputText + "입니다.");
+                    BattleMain(cPlayer, listMonster[2]);
+                    break;
+                case "둥지":
+                    Console.WriteLine(listMonster[3] + "가 서식 하는 " + strInputText + "입니다.");
+                    BattleMain(cPlayer, listMonster[3]);
+                    break;
+                default:
+                    Console.WriteLine(strInputText + "는 존재하지않습니다.");
+                    break;
+            }
+        }
+
+        static void BattleMain(Player cPlayer, Player cMonster)
+        {
             while(true)
             {
                 //플레이어가 선빵
@@ -87,5 +125,7 @@ namespace CSClass
                 }
             }
         }
+
+
     }
 }
