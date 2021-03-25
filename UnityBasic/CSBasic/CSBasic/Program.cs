@@ -156,13 +156,13 @@ namespace CSBasic
             //while (!(nMonsterHP < 0)) //100 < 0 //F -> T
             while ((nMonsterHP >= 0)) //100 < 0 //T
             {
-                int nRandom =cRandom.Next(1, 3);
+                int nRandom = cRandom.Next(1, 3);
                 if (nRandom == 1)
                 {
-                    nPlayerAttack = (int)(nPlayerAttack * 1.5f);
-                    Console.WriteLine("Critical! MonsterHP - PlayerAtk:" + nMonsterHP + " - " + nPlayerAttack);
+                    int nCritcalHit = (int)(nPlayerAttack * 1.5f);
+                    Console.WriteLine("Critical! MonsterHP - PlayerAtk:" + nMonsterHP + " - " + nCritcalHit);
                     //변수의 값을 분석한 결과대로 나오도록 연산한다.
-                    nMonsterHP = nMonsterHP - nPlayerAttack;
+                    nMonsterHP = nMonsterHP - nCritcalHit;
                 }
                 else
                 {
