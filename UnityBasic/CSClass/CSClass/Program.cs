@@ -49,7 +49,8 @@ namespace CSClass
         {
             //ObjectTestMain();
             //BattleMain();
-            GameMain();
+            //GameMain();
+            PokemonGameMain();
         }
 
         static void ObjectTestMain()
@@ -102,7 +103,7 @@ namespace CSClass
 
         static void BattleMain(Player cPlayer, Player cMonster)
         {
-            while(true)
+            while (true)
             {
                 //플레이어가 선빵
                 cPlayer.Attack(cMonster);
@@ -113,7 +114,7 @@ namespace CSClass
                     Console.WriteLine("몬스터 사망!");
                     break;
                 }
-                
+
                 //몬스터가 반격
                 cMonster.Attack(cPlayer);
                 cPlayer.Show();
@@ -124,6 +125,24 @@ namespace CSClass
                     break;
                 }
             }
+        }
+
+        static void PokemonGameMain()
+        {
+            Trainner trainner = new Trainner();
+
+            Pokemon pokemonA = new Pokemon("Pikacu", 100, 10);
+
+            trainner.Catch(pokemonA);
+
+            Pokemon throwPokemon = trainner.Throw("test");
+
+            if (throwPokemon != null)
+            {
+                throwPokemon.Show();
+            }
+            else
+                Console.WriteLine("Pokemon not Exist!");
         }
 
 

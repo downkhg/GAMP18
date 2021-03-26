@@ -12,12 +12,52 @@ namespace CSClass
 {
     class Pokemon
     {
-        public string Name;
+        string m_strName;
+        private int m_nExp;
+        private int m_nLv;
+        private int m_nHP;
+        private int m_nStr;
 
+        public string Name
+        {
+            get { return m_strName; }
+        }
+
+        public int HP { get { return m_nHP; } set { m_nHP = value; } }
+
+        public Pokemon(string name, int hp, int str)
+        {
+            m_strName = name;
+            m_nHP = hp;
+            m_nStr = str;
+            m_nLv = 1;
+            m_nExp = 0;
+        }
+
+        public void Attack(Pokemon target)
+        {
+            target.HP = target.HP - this.m_nStr;
+        }
+
+        public bool Death()
+        {
+            if (m_nHP <= 0)
+                return true;
+            else
+                return false;
+        }
+
+        public void Show()
+        {
+            Console.WriteLine("Name:" + m_strName);
+            Console.WriteLine("HP:" + m_nHP);
+            Console.WriteLine("STR:" + m_nStr);
+            Console.WriteLine("Lv/Exp:{0}/{1}", m_nLv, m_nExp);
+        }
     }
     class Trainner
     {
-        List<Pokemon> pokemons;
+        List<Pokemon> pokemons = new List<Pokemon>();
 
         public void Catch(Pokemon target)
         {
@@ -29,4 +69,6 @@ namespace CSClass
             return pokemons.Find(x => x.Name == name);
         }
     }
+
+    
 }
