@@ -66,7 +66,8 @@ namespace CSClass
 
         public Pokemon Throw(string name)
         {
-            return pokemons.Find(x => x.Name == name);
+            //람다식, 델리게이트
+            return pokemons.Find(pokemon => pokemon.Name == name);
         }
     }
 
