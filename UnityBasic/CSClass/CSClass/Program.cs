@@ -5,7 +5,7 @@ namespace CSClass
 {
     public class Player
     {
-        private string m_strName;
+        public string m_strName;
         private int m_nExp;
         private int m_nLv;
         private int m_nHP;
@@ -96,20 +96,20 @@ namespace CSClass
             switch (strInputText)
             {
                 case "숲":
-                    Console.WriteLine(listMonster[0] + "가 서식 하는 " + strInputText + "입니다.");
+                    Console.WriteLine(listMonster[0].m_strName + "가 서식 하는 " + strInputText + "입니다.");
                     BattleMain(cPlayer, listMonster[0]);
                     //실제 게임에서는 해당 출력이후 게임에서 필요한 처리를 장소마다 다르게해야한다.
                     break;
                 case "던전":
-                    Console.WriteLine(listMonster[1] + "가 서식 하는 " + strInputText + "입니다.");
+                    Console.WriteLine(listMonster[1].m_strName + "가 서식 하는 " + strInputText + "입니다.");
                     BattleMain(cPlayer, listMonster[1]);
                     break;
                 case "무덤":
-                    Console.WriteLine(listMonster[2] + "가 서식 하는 " + strInputText + "입니다.");
+                    Console.WriteLine(listMonster[2].m_strName + "가 서식 하는 " + strInputText + "입니다.");
                     BattleMain(cPlayer, listMonster[2]);
                     break;
                 case "둥지":
-                    Console.WriteLine(listMonster[3] + "가 서식 하는 " + strInputText + "입니다.");
+                    Console.WriteLine(listMonster[3].m_strName + "가 서식 하는 " + strInputText + "입니다.");
                     BattleMain(cPlayer, listMonster[3]);
                     break;
                 default:
