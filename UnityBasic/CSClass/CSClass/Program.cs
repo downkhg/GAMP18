@@ -41,6 +41,23 @@ namespace CSClass
             Console.WriteLine("Lv/Exp:{0}/{1}",m_nLv,m_nExp );
         }
     }
+    //※코드를 작성할때는 다음과 같은 순서로 작성한다.
+    //1. 클래스의 이름을 작성한다.
+    //2. {} 호를 치고 중간에 엔터를 넣어 3과 같이 작업할 공간을 만든다.
+    //3. 멤버변수를 입력한다.
+    //4. 멤버함수의 이름을 작성하고, 매개변수를 작성한다.
+    //5. 함수의 {}를 작성하고 중간에 엔터를 넣는다.
+    //6. 함수안에 내용을 작성한다.
+    class test//1
+    {//2-1
+        string name;//3
+        void Attack(Pokemon pokemon)//4
+        {//5-1
+            //pokemon.HP = pokemon.HP - this.m_nStr;//6
+        }//5-2
+    }//2-2
+
+
     class Program
     {
         static Player m_cPlayer; //객체: 클래스의 인스턴스를 참조할수 있는 객체(클래스의 포인터와 유사)
@@ -156,15 +173,14 @@ namespace CSClass
 
         static void PokemonGameMain()
         {
-            Trainner trainner = new Trainner();
+            Trainner trainner = new Trainner(); //트레이너 생성
+            Pokemon pokemonA = new Pokemon("Pikacu", 100, 10); //피카츄생성
 
-            Pokemon pokemonA = new Pokemon("Pikacu", 100, 10);
+            trainner.Catch(pokemonA);//피카츄를 잡음.
 
-            trainner.Catch(pokemonA);
+            Pokemon throwPokemon = trainner.Throw("Pikacu");//테스트를 던짐? -> 없음
 
-            Pokemon throwPokemon = trainner.Throw("test");
-
-            if (throwPokemon != null)
+            if (throwPokemon != null)//해당포켓몬이 있을때 ※null: 없음.
             {
                 throwPokemon.Show();
 
@@ -175,7 +191,7 @@ namespace CSClass
                 else
                     Console.WriteLine("Lose!");
             }
-            else
+            else //없을때
                 Console.WriteLine("Pokemon not Exist!");
         }
     }
