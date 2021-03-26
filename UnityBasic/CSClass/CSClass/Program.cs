@@ -127,6 +127,33 @@ namespace CSClass
             }
         }
 
+        static bool BattlePokemon(Pokemon cPlayer, Pokemon cMonster)
+        {
+            while (true)
+            {
+                //플레이어가 선빵
+                cPlayer.Attack(cMonster);
+                cMonster.Show();
+                //몬스터가 죽었다면 종료
+                if (cMonster.Death())
+                {
+                    Console.WriteLine("몬스터 사망!");
+                    return true;
+                }
+
+                //몬스터가 반격
+                cMonster.Attack(cPlayer);
+                cPlayer.Show();
+                //플레이어가 죽었다면 종효
+                if (cPlayer.Death())
+                {
+                    Console.WriteLine("플레이어 사망!");
+                    break;
+                }
+            }
+            return false;
+        }
+
         static void PokemonGameMain()
         {
             Trainner trainner = new Trainner();
@@ -140,11 +167,16 @@ namespace CSClass
             if (throwPokemon != null)
             {
                 throwPokemon.Show();
+
+                if(BattlePokemon(throwPokemon, new Pokemon("test", 100, 10)))
+                {
+                    Console.WriteLine("Win!");
+                }
+                else
+                    Console.WriteLine("Lose!");
             }
             else
                 Console.WriteLine("Pokemon not Exist!");
         }
-
-
     }
 }
