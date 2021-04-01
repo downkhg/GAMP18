@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Dynamic : MonoBehaviour
 {
+    public float JumpPower;
+    public bool isGround = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,33 @@ public class Dynamic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.left * Time.deltaTime;
+        //transform.position += Vector3.right * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.RightArrow))
+            transform.position += Vector3.right * Time.deltaTime;
+        //왼쪽으로 이동하기 추가해보기.
+        if (Input.GetKey(KeyCode.LeftArrow))
+            transform.position += Vector3.left * Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isGround)
+            {
+                Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+                rigidbody2D.AddForce(Vector3.up * JumpPower);
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isGround = true;
+        Debug.Log("OnCollisionEnter2D:"+collision.gameObject.name);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isGround = false;
+        Debug.Log("OnCollisionExit2D:" + collision.gameObject.name);
     }
 }
