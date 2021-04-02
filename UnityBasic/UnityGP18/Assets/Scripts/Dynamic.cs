@@ -52,13 +52,15 @@ public class Dynamic : MonoBehaviour
         GUI.Box(new Rect(0, 0, 100, 20), "Score:" + Score);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if(collision.gameObject.name == "cherry" ||
-        //    collision.gameObject.name == "gem")
-        if(collision.gameObject.tag == "Item")
-        {
-            Score++;
-        }
-    }
+    //아이템에서 좀더 범용적인 처리가 가능하다.
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    //if(collision.gameObject.name == "cherry" ||
+    //    //    collision.gameObject.name == "gem")
+    //    if(collision.gameObject.tag == "Item")
+    //    {
+    //        Score++;
+    //        Destroy(collision.gameObject);
+    //    }
+    //}
 }
