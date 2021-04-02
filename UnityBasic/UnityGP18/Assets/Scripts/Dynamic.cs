@@ -54,8 +54,9 @@ public class Dynamic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "cherry" ||
-            collision.gameObject.name == "gem")
+        //if(collision.gameObject.name == "cherry" ||
+        //    collision.gameObject.name == "gem")
+        if(collision.gameObject.tag == "Item")
         {
             Score++;
         }
