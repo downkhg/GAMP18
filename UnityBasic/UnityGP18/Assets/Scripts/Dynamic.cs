@@ -6,6 +6,7 @@ public class Dynamic : MonoBehaviour
 {
     public float JumpPower;
     public bool isJump = false;
+    public int Score;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,5 +45,19 @@ public class Dynamic : MonoBehaviour
     {
         //isGround = false;
         Debug.Log("OnCollisionExit2D:" + collision.gameObject.name);
+    }
+
+    private void OnGUI()
+    {
+        GUI.Box(new Rect(0, 0, 100, 20), "Score:" + Score);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "cherry" ||
+            collision.gameObject.name == "gem")
+        {
+            Score++;
+        }
     }
 }
