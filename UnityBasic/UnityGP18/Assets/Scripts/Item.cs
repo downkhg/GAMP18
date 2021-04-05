@@ -19,11 +19,18 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "player")
+        Debug.Log("OnTriggerEnter2D:"+collision.gameObject.name);
+        //if (collision.gameObject.name == "player")
+        if (collision.gameObject.name == "Player")//대소문자 구별함.
         {
             Dynamic dynamic = collision.gameObject.GetComponent<Dynamic>();
-            dynamic.Score += Score;
-            Destroy(gameObject);
+            if (dynamic != null)
+            {
+                dynamic.Score += Score;
+                Destroy(gameObject);
+            }
+            else //만약, 대상에 해당 컴포넌트가 없다면 null이 된다.
+                Debug.Log("dynamic is null!!");
         }
     }
 }
