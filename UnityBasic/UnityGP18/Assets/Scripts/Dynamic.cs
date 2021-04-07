@@ -6,6 +6,7 @@ public class Dynamic : MonoBehaviour
 {
     public float JumpPower;
     public bool isJump = false;
+    public bool isRadder = false;
     public int Score;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,15 @@ public class Dynamic : MonoBehaviour
                 isJump = false;
             }
         }
+
+        if(isRadder == true)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+                transform.position += Vector3.up * Time.deltaTime;
+            //왼쪽으로 이동하기 추가해보기.
+            if (Input.GetKey(KeyCode.DownArrow))
+                transform.position += Vector3.down * Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,6 +60,31 @@ public class Dynamic : MonoBehaviour
         //isGround = false;
         Debug.Log("OnCollisionExit2D:" + collision.gameObject.name);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Radder")
+        {
+            isRadder = true;
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+
+        Debug.Log("OnTriggerEnter2D:" + collision.gameObject.name);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Radder")
+        {
+            isRadder = false;
+            GetComponent<Rigidbody2D>().gravityScale = 1;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+
+        Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
+    }
+   
 
     private void OnGUI()
     {
