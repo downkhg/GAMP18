@@ -21,7 +21,7 @@ public class Item : MonoBehaviour
     {
         Debug.Log("OnTriggerEnter2D:"+collision.gameObject.name);
         //if (collision.gameObject.name == "player")
-        if (collision.gameObject.name == "Player")//대소문자 구별함.
+        if (collision.gameObject.tag == "Player")//대소문자 구별함.
         {
             Dynamic dynamic = collision.gameObject.GetComponent<Dynamic>();
             if (dynamic != null)

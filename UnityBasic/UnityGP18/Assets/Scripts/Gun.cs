@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public GameObject objBullet;
+    public GameObject prefabBullet;
     public float ShotPower;
+    public float Dist;
+   
 
     void Shot()
     {
+        GameObject objBullet = Instantiate(prefabBullet);
+        objBullet.transform.position = this.transform.position;
         Rigidbody2D rigidbody = objBullet.GetComponent<Rigidbody2D>();
         rigidbody.AddForce(Vector3.right * ShotPower);
+        Bullet bullet = objBullet.GetComponent<Bullet>();
+        bullet.Dist = Dist;
+        //Destroy(objBullet, 1);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
