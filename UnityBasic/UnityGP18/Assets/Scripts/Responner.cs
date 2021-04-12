@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Responner : MonoBehaviour
 {
-    public GameObject m_prefabPlayer;
     public GameObject m_objPlayer;
+    public string m_strPlayer;
     public bool isRespon = false;
+    public float ResponTime = 1;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //시작할때 지정된 오브젝트의 이름을 저장한다.
+        m_strPlayer = m_objPlayer.name;
     }
 
     // Update is called once per frame
@@ -28,17 +30,18 @@ public class Responner : MonoBehaviour
 
     IEnumerator ProcessResponTimmer()
     {
-        Debug.Log("ProcessResponTimmer start");
-        isRespon = true;
-        yield return new WaitForSeconds(1);
-        ResponPlayer();
+        Debug.Log("ProcessResponTimmer start"); //1
+        isRespon = true; //2
+        yield return new WaitForSeconds(ResponTime);//지정한 옵션만큼 대기한다.
+        ResponPlayer(); //3
         isRespon = false;
-        Debug.Log("ProcessResponTimmer end");
+        Debug.Log("ProcessResponTimmer end"); //5
     }
 
     void ResponPlayer()
     {
-        m_objPlayer = Instantiate(m_prefabPlayer);
+        GameObject prefabPlayer = Resources.Load("Prefabs/"+ m_strPlayer) as GameObject;
+        m_objPlayer = Instantiate(prefabPlayer);
         m_objPlayer.transform.position = this.transform.position;
     }
 }

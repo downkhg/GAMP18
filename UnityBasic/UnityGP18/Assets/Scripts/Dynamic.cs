@@ -7,6 +7,7 @@ public class Dynamic : MonoBehaviour
     public float JumpPower;
     public bool isJump = false;
     public bool isRadder = false;
+    public float Speed = 1;
     public int Score;
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,10 @@ public class Dynamic : MonoBehaviour
         //transform.position += Vector3.right * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.RightArrow))
-            transform.position += Vector3.right * Time.deltaTime;
+            transform.position += Vector3.right * Speed * Time.deltaTime;
         //왼쪽으로 이동하기 추가해보기.
         if (Input.GetKey(KeyCode.LeftArrow))
-            transform.position += Vector3.left * Time.deltaTime;
+            transform.position += Vector3.left * Speed * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Opossum : MonoBehaviour
 {
+    public float Speed = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class Opossum : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.left * Time.deltaTime;
+        transform.position += Vector3.left * Speed * Time.deltaTime;
     }
 }
