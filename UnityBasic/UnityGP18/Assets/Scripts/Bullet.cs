@@ -22,4 +22,10 @@ public class Bullet : MonoBehaviour
         if (fDist > Dist)
             Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Monster")
+            Destroy(collision.gameObject);
+    }
 }
