@@ -6,6 +6,9 @@ public class Eagle : MonoBehaviour
 {
     public float Speed = 1;
     public float Site = 0.5f;
+
+    public Responner responner;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +53,24 @@ public class Eagle : MonoBehaviour
             Vector3 vDist = vTagetPos - vPos;
             Vector3 vDir = vDist.normalized;
 
-            transform.position += vDir * Speed * Time.deltaTime;
+            float fDist = vDist.magnitude;
+            float fMoveDist = Speed * Time.deltaTime;
+
+            if(fDist > fMoveDist)
+                transform.position += vDir * Speed * Time.deltaTime;
+        }
+        else
+        {
+            Vector3 vTagetPos = responner.transform.transform.position;
+
+            Vector3 vDist = vTagetPos - vPos;
+            Vector3 vDir = vDist.normalized;
+
+            float fDist = vDist.magnitude;
+            float fMoveDist = Speed * Time.deltaTime;
+
+            if (fDist > fMoveDist)
+                transform.position += vDir * Speed * Time.deltaTime;
         }
     }
 

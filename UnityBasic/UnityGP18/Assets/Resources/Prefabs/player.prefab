@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3534384663143054314}
   - component: {fileID: 3534384663143054315}
   - component: {fileID: 3534384663143054312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   JumpPower: 200
   isJump: 0
   isRadder: 0
+  Speed: 1
   Score: 0
 --- !u!50 &3534384663143054315
 Rigidbody2D:

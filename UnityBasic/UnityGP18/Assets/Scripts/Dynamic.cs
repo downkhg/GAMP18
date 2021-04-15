@@ -50,8 +50,8 @@ public class Dynamic : MonoBehaviour
     {
         isJump = false;
 
-        if(collision.gameObject.tag == "Monster")
-            Destroy(this.gameObject);
+        //if(collision.gameObject.tag == "Monster")
+        //    Destroy(this.gameObject);
 
         Debug.Log("OnCollisionEnter2D:"+collision.gameObject.name);
     }
