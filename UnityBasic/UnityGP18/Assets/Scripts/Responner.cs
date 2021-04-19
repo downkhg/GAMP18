@@ -26,6 +26,13 @@ public class Responner : MonoBehaviour
             //m_objPlayer.transform.position = this.transform.position;
             StartCoroutine(ProcessResponTimmer());
         }
+
+        //if(m_objPlayer)
+        //{
+        //    Eagle eagle = m_objPlayer.GetComponent<Eagle>();
+        //    if (eagle)
+        //        eagle.responner = this;
+        //}
     }
 
     IEnumerator ProcessResponTimmer()

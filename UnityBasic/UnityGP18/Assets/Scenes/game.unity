@@ -3021,6 +3021,21 @@ PrefabInstance:
       propertyPath: responner
       value: 
       objectReference: {fileID: 118617923}
+    - target: {fileID: 9036744317489113031, guid: 7a37420b223d25d439005765fcf2983f,
+        type: 3}
+      propertyPath: transformA
+      value: 
+      objectReference: {fileID: 118617924}
+    - target: {fileID: 9036744317489113031, guid: 7a37420b223d25d439005765fcf2983f,
+        type: 3}
+      propertyPath: transformB
+      value: 
+      objectReference: {fileID: 87059474}
+    - target: {fileID: 9036744317489113031, guid: 7a37420b223d25d439005765fcf2983f,
+        type: 3}
+      propertyPath: patrolPoint
+      value: 
+      objectReference: {fileID: 87059474}
     - target: {fileID: 9036744317489113035, guid: 7a37420b223d25d439005765fcf2983f,
         type: 3}
       propertyPath: m_Name

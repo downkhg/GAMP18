@@ -31,6 +31,7 @@ public class Dynamic : MonoBehaviour
             if (isJump == false)
             {
                 Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+                rigidbody2D.velocity = Vector2.zero;
                 rigidbody2D.AddForce(Vector3.up * JumpPower);
                 isJump = false;
             }
