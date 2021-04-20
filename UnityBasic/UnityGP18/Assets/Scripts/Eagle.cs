@@ -34,6 +34,34 @@ public class Eagle : MonoBehaviour
         }
     }
 
+    void ProcessReturn()
+    {
+        if (objTarget)
+        {
+            ProcessPatrol();
+        }
+        else
+        {
+            if (responner != null && objTarget == null)
+                objTarget = responner.gameObject;
+        }
+    }
+
+    void ProcessFindTarget()
+    {
+        Vector3 vPos = this.transform.position;
+        int nLayer = 1 << LayerMask.NameToLayer("Player");
+        Collider2D collider = Physics2D.OverlapCircle(vPos, Site, nLayer);
+
+        if (collider)
+        {
+            Debug.Log(collider.gameObject.name);
+            objTarget = collider.gameObject;
+        }
+        else
+            objTarget = null;
+    }
+
     bool NearCheckPostion(Vector3 vTagetPos)
     {
         float fDist = Vector3.Distance(transform.position, vTagetPos);
@@ -89,28 +117,9 @@ public class Eagle : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 vPos = this.transform.position;
-        int nLayer = 1 << LayerMask.NameToLayer("Player");
-        Collider2D collider = Physics2D.OverlapCircle(vPos, Site, nLayer);
-
-        if (collider)
-        {
-            Debug.Log(collider.gameObject.name);
-            objTarget = collider.gameObject;
-        }
-        else
-            objTarget = null;
-
-        if(objTarget)
-        {
-            ProcessPatrol();
-        }
-        else
-        {
-            if (responner != null && objTarget == null)
-                objTarget = responner.gameObject;
-        }
+        ProcessFindTarget();
     }
+
 
     private void OnDrawGizmos()
     {
@@ -122,6 +131,8 @@ public class Eagle : MonoBehaviour
     {
         if(objTarget)
             MoveProcess(this.transform.position, objTarget.transform.position);
+
+        ProcessReturn();
     }
     ////트리거는 총알에 맞아도 반응하므로 사용할수없다.
     //private void OnTriggerStay2D(Collider2D collision)
