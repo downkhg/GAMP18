@@ -99,10 +99,16 @@ public class Eagle : MonoBehaviour
             objTarget = collider.gameObject;
         }
         else
+            objTarget = null;
+
+        if(objTarget)
         {
-            if(objTarget == null && responner != null)
-                objTarget = responner.gameObject;
             ProcessPatrol();
+        }
+        else
+        {
+            if (responner != null && objTarget == null)
+                objTarget = responner.gameObject;
         }
     }
 
