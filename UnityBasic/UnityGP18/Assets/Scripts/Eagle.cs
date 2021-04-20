@@ -50,8 +50,8 @@ public class Eagle : MonoBehaviour
     void ProcessFindTarget()
     {
         Vector3 vPos = this.transform.position;
-        int nLayer = 1 << LayerMask.NameToLayer("Player");
-        Collider2D collider = Physics2D.OverlapCircle(vPos, Site, nLayer);
+        int nLayer = LayerMask.NameToLayer("Player");
+        Collider2D collider = Physics2D.OverlapCircle(vPos, Site,1<< nLayer);
 
         if (collider)
         {
@@ -59,7 +59,10 @@ public class Eagle : MonoBehaviour
             objTarget = collider.gameObject;
         }
         else
-            objTarget = null;
+        {
+            if(objTarget && objTarget.layer == nLayer)
+                objTarget = null;
+        }
     }
 
     bool NearCheckPostion(Vector3 vTagetPos)

@@ -22,7 +22,11 @@ public class GameManager : MonoBehaviour
         if(objEagle)
         {
             Eagle eagle = objEagle.GetComponent<Eagle>();
-            eagle.responner = responnerEagle;
+            if (eagle.responner == null)
+                eagle.responner = responnerEagle;
+
+            if(eagle.patrolPoint == null)
+                eagle.patrolPoint = responnerOpossum.transform;
         }
     }
 }
