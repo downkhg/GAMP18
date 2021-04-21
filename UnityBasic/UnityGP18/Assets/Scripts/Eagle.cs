@@ -12,15 +12,44 @@ public class Eagle : MonoBehaviour
     public Responner responner;
     public Transform patrolPoint;
 
+    public enum E_AI_STATUS { RETRUN, PATROL }
+    public E_AI_STATUS m_eCurAIStatus = E_AI_STATUS.RETRUN;
+
+    public void SetAIStaus(E_AI_STATUS status)
+    {
+        switch(status)
+        {
+            case E_AI_STATUS.RETRUN:
+                break;
+            case E_AI_STATUS.PATROL:
+                break;
+        }
+        m_eCurAIStatus = status;
+    }
+
+    public void UpdateAIStatus()
+    {
+        switch (m_eCurAIStatus)
+        {
+            case E_AI_STATUS.RETRUN:
+                if (ProcessReturn() == false)
+                    SetAIStaus(E_AI_STATUS.PATROL);
+                break;
+            case E_AI_STATUS.PATROL:
+                ProcessPatrol();
+                break;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetAIStaus(m_eCurAIStatus);
     }
 
     void ProcessPatrol()
     {
-        if (patrolPoint == null) return;
+        if (patrolPoint == null || objTarget == null) return;
         if(NearCheckPostion(objTarget.transform.position))
         {
             if (objTarget.name == responner.gameObject.name)
@@ -34,20 +63,23 @@ public class Eagle : MonoBehaviour
         }
     }
 
-    void ProcessReturn()
+    bool ProcessReturn()
     {
         if (objTarget)
         {
             ProcessPatrol();
+            return false;
         }
         else
         {
             if (responner != null && objTarget == null)
                 objTarget = responner.gameObject;
         }
+
+        return true;
     }
 
-    void ProcessFindTarget()
+    bool ProcessFindTarget()
     {
         Vector3 vPos = this.transform.position;
         int nLayer = LayerMask.NameToLayer("Player");
@@ -56,13 +88,18 @@ public class Eagle : MonoBehaviour
         if (collider)
         {
             Debug.Log(collider.gameObject.name);
-            objTarget = collider.gameObject;
+            objTarget = collider.gameObject;  
         }
         else
         {
-            if(objTarget && objTarget.layer == nLayer)
+            if (objTarget && objTarget.layer == nLayer)
+            {
                 objTarget = null;
+                return false;
+            }
         }
+
+        return true;
     }
 
     bool NearCheckPostion(Vector3 vTagetPos)
@@ -120,7 +157,8 @@ public class Eagle : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ProcessFindTarget();
+        if (ProcessFindTarget() == false)
+            SetAIStaus(E_AI_STATUS.RETRUN);
     }
 
 
@@ -132,10 +170,11 @@ public class Eagle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(objTarget)
+        if (objTarget)
             MoveProcess(this.transform.position, objTarget.transform.position);
 
-        ProcessReturn();
+        //ProcessReturn();
+        UpdateAIStatus();
     }
     ////트리거는 총알에 맞아도 반응하므로 사용할수없다.
     //private void OnTriggerStay2D(Collider2D collision)
