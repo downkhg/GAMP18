@@ -12,14 +12,14 @@ public class Eagle : MonoBehaviour
     public Responner responner;
     public Transform patrolPoint;
 
-    public enum E_AI_STATUS { RETRUN, PATROL }
-    public E_AI_STATUS m_eCurAIStatus = E_AI_STATUS.RETRUN;
+    public enum E_AI_STATUS { RETURN, PATROL }
+    public E_AI_STATUS m_eCurAIStatus = E_AI_STATUS.RETURN;
 
     public void SetAIStaus(E_AI_STATUS status)
     {
         switch(status)
         {
-            case E_AI_STATUS.RETRUN:
+            case E_AI_STATUS.RETURN:
                 break;
             case E_AI_STATUS.PATROL:
                 break;
@@ -31,7 +31,7 @@ public class Eagle : MonoBehaviour
     {
         switch (m_eCurAIStatus)
         {
-            case E_AI_STATUS.RETRUN:
+            case E_AI_STATUS.RETURN:
                 if (ProcessReturn() == false)
                     SetAIStaus(E_AI_STATUS.PATROL);
                 break;
@@ -90,7 +90,7 @@ public class Eagle : MonoBehaviour
             Debug.Log(collider.gameObject.name);
             objTarget = collider.gameObject;  
         }
-        else
+         else
         {
             if (objTarget && objTarget.layer == nLayer)
             {
@@ -158,7 +158,7 @@ public class Eagle : MonoBehaviour
     private void FixedUpdate()
     {
         if (ProcessFindTarget() == false)
-            SetAIStaus(E_AI_STATUS.RETRUN);
+            SetAIStaus(E_AI_STATUS.RETURN);
     }
 
 
