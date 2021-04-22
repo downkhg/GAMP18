@@ -12,7 +12,7 @@ public class Eagle : MonoBehaviour
     public Responner responner;
     public Transform patrolPoint;
 
-    public enum E_AI_STATUS { RETURN, PATROL }
+    public enum E_AI_STATUS { RETURN, PATROL ,ATTACK}
     public E_AI_STATUS m_eCurAIStatus = E_AI_STATUS.RETURN;
 
     public void SetAIStaus(E_AI_STATUS status)
@@ -22,6 +22,8 @@ public class Eagle : MonoBehaviour
             case E_AI_STATUS.RETURN:
                 break;
             case E_AI_STATUS.PATROL:
+                break;
+            case E_AI_STATUS.ATTACK:
                 break;
         }
         m_eCurAIStatus = status;
@@ -37,6 +39,10 @@ public class Eagle : MonoBehaviour
                 break;
             case E_AI_STATUS.PATROL:
                 ProcessPatrol();
+                break;
+            case E_AI_STATUS.ATTACK:
+                if (objTarget == null)
+                    SetAIStaus(E_AI_STATUS.RETURN);
                 break;
         }
     }
@@ -88,7 +94,8 @@ public class Eagle : MonoBehaviour
         if (collider)
         {
             Debug.Log(collider.gameObject.name);
-            objTarget = collider.gameObject;  
+            objTarget = collider.gameObject;
+            SetAIStaus(E_AI_STATUS.ATTACK);
         }
          else
         {
@@ -175,6 +182,11 @@ public class Eagle : MonoBehaviour
 
         //ProcessReturn();
         UpdateAIStatus();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(collision.gameObject);
     }
     ////트리거는 총알에 맞아도 반응하므로 사용할수없다.
     //private void OnTriggerStay2D(Collider2D collision)
