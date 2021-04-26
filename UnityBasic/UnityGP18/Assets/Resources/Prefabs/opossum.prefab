@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 756551952940806875}
   - component: {fileID: 756551952940806872}
   - component: {fileID: 756551952940806873}
-  m_Layer: 0
+  - component: {fileID: 3043172058022992808}
+  m_Layer: 9
   m_Name: opossum
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e1e28457a7f294cb633a637bed13ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 1
 --- !u!50 &756551952940806873
 Rigidbody2D:
   serializedVersion: 4
@@ -143,3 +145,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3043172058022992808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756551952940806868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6171b4b6341ad604f98492dbe29bc241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_nHP: 50
+  m_nStr: 5
+  m_nExp: 0
+  m_nLv: 1
+  idx: 1

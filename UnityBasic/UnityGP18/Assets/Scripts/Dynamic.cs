@@ -47,12 +47,37 @@ public class Dynamic : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Vector3 vPos = this.transform.position;
+        int nLayer = LayerMask.NameToLayer("Monster");
+
+        CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
+        vPos += new Vector3(circleCollider.offset.x, circleCollider.offset.y, 0);
+
+        Collider2D collider = Physics2D.OverlapCircle(vPos, circleCollider.radius, 1 << nLayer);
+
+        if(collider)
+        {
+            Player player = collider.gameObject.GetComponent<Player>();
+            Player target = this.gameObject.GetComponent<Player>();
+
+            player.Attack(target);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isJump = false;
 
-        //if(collision.gameObject.tag == "Monster")
-        //    Destroy(this.gameObject);
+        if (collision.gameObject.tag == "Monster")
+        {
+            //Destroy(this.gameObject);
+            Player player = collision.gameObject.GetComponent<Player>();
+            Player target = this.gameObject.GetComponent<Player>();
+
+            player.Attack(target);
+        }
 
         Debug.Log("OnCollisionEnter2D:"+collision.gameObject.name);
     }
