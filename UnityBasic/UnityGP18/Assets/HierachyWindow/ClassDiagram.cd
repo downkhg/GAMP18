@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HierachyWindow.UnityComponet">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAgAAEAAEAAAQAwACAAAAAAABAwAAAYAI=</HashCode>
+      <FileName>Assets\HierachyWindow\UnityComponet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HierachyWindow.UnityObject">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIgAAEAgEAAgQAgACAAwAEAAAAwAIAYAI=</HashCode>
+      <FileName>Assets\HierachyWindow\UnityObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HierachyWindow.UnityObjectInfo">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAgAAAARAAgCAAAAAAAARSAAAAAAAE=</HashCode>
+      <FileName>Assets\HierachyWindow\UnityObjectInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="HierachyWindow.RectEx">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAlAAAAAAAABAAQEQAAAAAAgAGggAAAAAABgAAIAECA=</HashCode>
+      <FileName>Assets\HierachyWindow\UnityObjectInfo.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

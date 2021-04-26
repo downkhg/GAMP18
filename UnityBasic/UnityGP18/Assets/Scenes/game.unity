@@ -664,6 +664,7 @@ MonoBehaviour:
   responnerPlayer: {fileID: 108226477}
   responnerOpossum: {fileID: 87059473}
   responnerEagle: {fileID: 118617923}
+  cameraTracker: {fileID: 653097027}
 --- !u!4 &393304029
 Transform:
   m_ObjectHideFlags: 0
@@ -1035,7 +1036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objTarget: {fileID: 250764025}
-  Speed: 1
+  Speed: 2
 --- !u!1 &656572279
 GameObject:
   m_ObjectHideFlags: 0

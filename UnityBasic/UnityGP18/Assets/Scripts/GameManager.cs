@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public Responner responnerOpossum;
     public Responner responnerEagle;
 
+    public CameraTracker cameraTracker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +30,8 @@ public class GameManager : MonoBehaviour
             if(eagle.patrolPoint == null)
                 eagle.patrolPoint = responnerOpossum.transform;
         }
+
+        if(cameraTracker.objTarget == null)
+            cameraTracker.objTarget = responnerPlayer.m_objPlayer;
     }
 }
