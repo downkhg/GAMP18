@@ -9,18 +9,7 @@ public class Dynamic : MonoBehaviour
     public bool isRadder = false;
     public float Speed = 1;
     public int Score;
-    // Start is called before the first frame update
-    public bool isSuperMode;
-    public float SuperModeTime;
-    IEnumerator ProcessTimmer()
-    {
-        Debug.Log("ProcessTimmer start"); //1
-        isSuperMode = true; //2
-        yield return new WaitForSeconds(SuperModeTime);//지정한 옵션만큼 대기한다.
-        isSuperMode = false;
-        Debug.Log("ProcessTimmer end"); //5
-    }
-
+  
     void Start()
     {
         
@@ -29,14 +18,6 @@ public class Dynamic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSuperMode)
-        {
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            Color color = spriteRenderer.color;
-            if (color.a == 1) color.a = 0;
-            else color.a = 1;
-            spriteRenderer.color = color;
-        }
         //transform.position += Vector3.right * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -70,7 +51,8 @@ public class Dynamic : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isSuperMode) return;
+        SuperMode superMode = GetComponent<SuperMode>();
+        if (superMode !=null && superMode.isOn) return;
 
         Vector3 vPos = this.transform.position;
         int nLayer = LayerMask.NameToLayer("Monster");
@@ -86,7 +68,7 @@ public class Dynamic : MonoBehaviour
             Player target = this.gameObject.GetComponent<Player>();
 
             player.Attack(target);
-            StartCoroutine(ProcessTimmer());
+            superMode.Active();
         }
     }
 

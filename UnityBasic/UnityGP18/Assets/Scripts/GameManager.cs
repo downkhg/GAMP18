@@ -9,11 +9,18 @@ public class GameManager : MonoBehaviour
     public Responner responnerEagle;
 
     public CameraTracker cameraTracker;
+    //싱글톤
+    static GameManager instance;
+
+    public static GameManager GetInstance()
+    {
+        return instance;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame

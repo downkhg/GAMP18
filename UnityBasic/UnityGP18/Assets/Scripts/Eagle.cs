@@ -138,34 +138,39 @@ public class Eagle : MonoBehaviour
             return false;
     }
 
-    //private void FixedUpdate()
-    //{
-    //    Vector3 vPos = this.transform.position;
-    //    Collider2D[] colliders = Physics2D.OverlapCircleAll(vPos, 0.5f);
-
-    //    if(colliders.Length > 0)
-    //    {
-    //        Debug.Log("CollidersCount:"+colliders.Length);
-    //        foreach (Collider2D collider in colliders)
-    //        {
-    //            if (collider.tag == "Player")
-    //            {
-    //                Debug.Log(collider.gameObject.name);
-    //                Vector3 vTagetPos = collider.transform.transform.position;
-
-    //                Vector3 vDist = vTagetPos - vPos;
-    //                Vector3 vDir = vDist.normalized;
-
-    //                transform.position += vDir * Speed * Time.deltaTime;
-    //            }
-    //        }
-    //    }
-    //}
-
     private void FixedUpdate()
     {
         if (ProcessFindTarget() == false)
             SetAIStaus(E_AI_STATUS.RETURN);
+
+        ProcessDemage();
+    }
+
+    void ProcessDemage()
+    {
+        SuperMode superMode = GetComponent<SuperMode>();
+        if (superMode != null && superMode.isOn) return;
+
+        Vector3 vPos = this.transform.position;
+        int nLayer = LayerMask.NameToLayer("Bullet");
+
+        CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
+        vPos += new Vector3(circleCollider.offset.x, circleCollider.offset.y, 0);
+
+        Collider2D collider = Physics2D.OverlapCircle(vPos, circleCollider.radius, 1 << nLayer);
+
+        if (collider)
+        {
+            GameObject objPlayer = GameManager.GetInstance().responnerPlayer.m_objPlayer;//싱글톤을 이용한 플레이어에 접근
+            if (objPlayer)
+            {
+                Player player = objPlayer.GetComponent<Player>();
+                Player target = this.gameObject.GetComponent<Player>();
+
+                player.Attack(target);
+                superMode.Active();
+            }
+        }
     }
 
 
