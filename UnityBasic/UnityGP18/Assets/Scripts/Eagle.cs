@@ -142,8 +142,7 @@ public class Eagle : MonoBehaviour
     {
         if (ProcessFindTarget() == false)
             SetAIStaus(E_AI_STATUS.RETURN);
-
-        ProcessDemage();
+        //ProcessDemage();
     }
 
     void ProcessDemage()

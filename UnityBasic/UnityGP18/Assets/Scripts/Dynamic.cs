@@ -9,16 +9,16 @@ public class Dynamic : MonoBehaviour
     public bool isRadder = false;
     public float Speed = 1;
     public int Score;
-  
-    void Start()
-    {
-        
-    }
+
+    public Gun gun;
 
     // Update is called once per frame
     void Update()
     {
         //transform.position += Vector3.right * Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.X))
+            gun.Shot(GetComponent<Player>());
 
         if (Input.GetKey(KeyCode.RightArrow))
             transform.position += Vector3.right * Speed * Time.deltaTime;

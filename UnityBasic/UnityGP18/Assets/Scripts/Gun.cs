@@ -8,8 +8,7 @@ public class Gun : MonoBehaviour
     public float ShotPower;
     public float Dist;
    
-
-    void Shot()
+    public void Shot(Player player)
     {
         GameObject objBullet = Instantiate(prefabBullet);
         objBullet.transform.position = this.transform.position;
@@ -17,19 +16,7 @@ public class Gun : MonoBehaviour
         rigidbody.AddForce(Vector3.right * ShotPower);
         Bullet bullet = objBullet.GetComponent<Bullet>();
         bullet.Dist = Dist;
+        bullet.master = player;
         //Destroy(objBullet, 1);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-            Shot();
     }
 }
