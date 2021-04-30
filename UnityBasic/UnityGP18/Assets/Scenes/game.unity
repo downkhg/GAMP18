@@ -3041,6 +3041,11 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3534384663143054316, guid: 7269d58c667e2d94bba15e9230b008f0,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3534384663143054317, guid: 7269d58c667e2d94bba15e9230b008f0,
         type: 3}
       propertyPath: m_LocalPosition.x

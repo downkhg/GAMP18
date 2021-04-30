@@ -160,6 +160,7 @@ public class Eagle : MonoBehaviour
 
         if (collider)
         {
+            //GameObject objPlayer =  GameObject.Find("Player"); //검색을 하기위해 게임오브젝트를 검색해야하므로 추천하지않음.
             GameObject objPlayer = GameManager.GetInstance().responnerPlayer.m_objPlayer;//싱글톤을 이용한 플레이어에 접근
             if (objPlayer)
             {

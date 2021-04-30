@@ -12,6 +12,8 @@ public class Dynamic : MonoBehaviour
 
     public Gun gun;
 
+    public Vector3 dir;
+
     // Update is called once per frame
     void Update()
     {
