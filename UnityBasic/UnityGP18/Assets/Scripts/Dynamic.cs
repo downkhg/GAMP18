@@ -20,13 +20,24 @@ public class Dynamic : MonoBehaviour
         //transform.position += Vector3.right * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.X))
-            gun.Shot(GetComponent<Player>());
+            gun.Shot(dir,GetComponent<Player>());
 
         if (Input.GetKey(KeyCode.RightArrow))
+        {
+            //transform.Rotate(Vector3.up * 180);
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
+            dir = Vector3.right;
+            transform.localScale = new Vector3(1, 1, 1);
             transform.position += Vector3.right * Speed * Time.deltaTime;
+        }
         //왼쪽으로 이동하기 추가해보기.
         if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            //transform.rotation = Quaternion.Euler(0, 180, 0);
+            dir = Vector3.left;
+            transform.localScale = new Vector3(-1, 1, 1);
             transform.position += Vector3.left * Speed * Time.deltaTime;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -8,12 +8,12 @@ public class Gun : MonoBehaviour
     public float ShotPower;
     public float Dist;
    
-    public void Shot(Player player)
+    public void Shot(Vector3 dir, Player player)
     {
         GameObject objBullet = Instantiate(prefabBullet);
         objBullet.transform.position = this.transform.position;
         Rigidbody2D rigidbody = objBullet.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(Vector3.right * ShotPower);
+        rigidbody.AddForce(dir * ShotPower);
         Bullet bullet = objBullet.GetComponent<Bullet>();
         bullet.Dist = Dist;
         bullet.master = player;
