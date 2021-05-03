@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public int m_nExp = 0;
     public int m_nLv = 1;
   
-
     public void Init(string name, int hp, int str)
     {
         gameObject.name = name;
@@ -23,6 +22,8 @@ public class Player : MonoBehaviour
     public void Attack(Player target)
     {
         target.m_nHP -= this.m_nStr;
+        if(target.Death())
+            StillExp(target);
     }
 
     public bool Death()
@@ -45,9 +46,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void StillExp(Player target)
+    {
+        this.m_nExp += target.GetExp();
+    }
+
+    public int GetExp()
+    {
+        return m_nLv * 100 + m_nExp;
+    }
+
     private void Update()
     {
         LvUp();
+        if (Death() == true)
+            Destroy(this.gameObject);
     }
 
     //플레이어/주머니쥐/독수리:0,1,2
