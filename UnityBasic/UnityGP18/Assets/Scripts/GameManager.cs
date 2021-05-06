@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public Responner responnerEagle;
 
     public CameraTracker cameraTracker;
+
+    public Sprite spriteKillMounster;
     //싱글톤
     static GameManager instance;
 
@@ -37,12 +39,16 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case E_SCENE_STATE.TITLE:
+                Time.timeScale = 0;
                 break;
             case E_SCENE_STATE.PLAY:
+                Time.timeScale = 1;
                 break;
             case E_SCENE_STATE.GAMEOVER:
+                Time.timeScale = 0;
                 break;
             case E_SCENE_STATE.THEEND:
+                Time.timeScale = 0;
                 break;
         }
         ShowScene(state);
@@ -55,6 +61,11 @@ public class GameManager : MonoBehaviour
             case E_SCENE_STATE.TITLE:
                 break;
             case E_SCENE_STATE.PLAY:
+                {
+                    //플레이어가 3번죽으면 게임오버로 변경하기.
+                    //if (responnerPlayer.m_objPlayer == null)
+                    //    SetState(E_SCENE_STATE.GAMEOVER);
+                }
                 break;
             case E_SCENE_STATE.GAMEOVER:
                 break;
@@ -63,6 +74,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void EventReset()
+    {
+        Destroy(responnerPlayer.m_objPlayer);
+        Destroy(responnerEagle.m_objPlayer);
+        Destroy(responnerOpossum.m_objPlayer);
+        cameraTracker.transform.position = responnerPlayer.transform.position;
+    }
     public void EventSceneChange(int sceneNumber)
     {
         Debug.Log("EventSceneChange:"+sceneNumber);
@@ -85,6 +103,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateState();
+
         GameObject objEagle = responnerEagle.m_objPlayer;
 
         if(objEagle)
@@ -98,6 +118,6 @@ public class GameManager : MonoBehaviour
         }
 
         if(cameraTracker.objTarget == null)
-            cameraTracker.objTarget = responnerPlayer.m_objPlayer;
+            cameraTracker.objTarget = responnerPlayer.m_objPlayer;   
     }
 }

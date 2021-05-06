@@ -41,6 +41,12 @@ public class CameraTracker : MonoBehaviour
     void Update()
     {
         //MoveProcess(this.transform.position, objTarget.transform.position);
-        MoveLerpProcess(this.transform.position, objTarget.transform.position);
+        if(objTarget)
+            MoveLerpProcess(this.transform.position, objTarget.transform.position);
+    }
+
+    public void Reset()
+    {
+        
     }
 }

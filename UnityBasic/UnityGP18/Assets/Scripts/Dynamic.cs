@@ -130,7 +130,16 @@ public class Dynamic : MonoBehaviour
 
         Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
     }
-   
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "house")
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+                GameManager.GetInstance().EventSceneChange(3);
+        }
+    }
+
 
     private void OnGUI()
     {
