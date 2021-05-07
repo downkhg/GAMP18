@@ -5,11 +5,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int m_nHP;
+    public int m_nMaxHP;
+
     public int m_nStr;
 
     public int m_nExp = 0;
     public int m_nLv = 1;
-  
+
+    private void Start()
+    {
+        m_nMaxHP = m_nHP;
+    }
+
     public void Init(string name, int hp, int str)
     {
         gameObject.name = name;
@@ -42,6 +49,7 @@ public class Player : MonoBehaviour
             m_nLv++;
             m_nStr += 5;
             m_nHP += 5;
+            m_nMaxHP += 5;
             m_nExp -= 100;
         }
     }

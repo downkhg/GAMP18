@@ -158,7 +158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_nHP: 50
+  m_nMaxHP: 0
   m_nStr: 5
-  m_nExp: 0
+  m_nExp: 50
   m_nLv: 1
   idx: 1

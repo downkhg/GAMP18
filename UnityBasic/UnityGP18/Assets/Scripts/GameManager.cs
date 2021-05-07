@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +23,23 @@ public class GameManager : MonoBehaviour
 
     public enum E_SCENE_STATE { NONE = -1, TITLE, PLAY, GAMEOVER, THEEND }
     public E_SCENE_STATE m_eCurState = E_SCENE_STATE.NONE;
-    public List<GameObject> m_listScenes; 
+    public List<GameObject> m_listScenes;
+
+    public Text textLv;
+    public Text textName;
+
+    public RectTransform rectHPBar;
+    public RectTransform rectHPBarBG;
+
+    public GUIStatusBar guiExpBar;
+
+    public void SetHPBar(float hp, float maxhp)
+    {
+        float fRat = hp / maxhp;
+        Vector2 vSize = rectHPBar.sizeDelta;
+        vSize.x = rectHPBarBG.sizeDelta.x * fRat; 
+        rectHPBar.sizeDelta = vSize;
+    }
 
     void ShowScene(E_SCENE_STATE state)
     {
@@ -68,6 +85,20 @@ public class GameManager : MonoBehaviour
                     //플레이어가 3번죽으면 게임오버로 변경하기.
                     //if (responnerPlayer.m_objPlayer == null)
                     //    SetState(E_SCENE_STATE.GAMEOVER);
+                    GameObject objPlayer = responnerPlayer.m_objPlayer;
+                    if (objPlayer)
+                    {
+                        Player player = objPlayer.GetComponent<Player>();
+                        if (player)
+                        {
+                            SetHPBar(player.m_nHP, player.m_nMaxHP);
+                            guiExpBar.SetBar(player.m_nExp, 100);
+                            textLv.text = string.Format("Lv. {0}",player.m_nLv);
+                            textName.text = objPlayer.name;
+                        }
+                    }
+
+
                 }
                 break;
             case E_SCENE_STATE.GAMEOVER:
