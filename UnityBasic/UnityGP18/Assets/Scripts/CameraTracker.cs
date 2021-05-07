@@ -31,12 +31,6 @@ public class CameraTracker : MonoBehaviour
         transform.position = Vector3.Lerp(vPos, vTagetPos, 0.5f);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -45,8 +39,9 @@ public class CameraTracker : MonoBehaviour
             MoveLerpProcess(this.transform.position, objTarget.transform.position);
     }
 
-    public void Reset()
+    public void ResetPos(Vector3 pos)
     {
-        
+        pos.z = this.transform.position.z;
+        this.transform.position = pos;
     }
 }

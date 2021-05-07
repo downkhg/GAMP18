@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class GameManager : MonoBehaviour
         return instance;
     }
 
-    public enum E_SCENE_STATE { TITLE, PLAY, GAMEOVER, THEEND } 
-    public E_SCENE_STATE m_eCurState;
+    public enum E_SCENE_STATE { NONE = -1, TITLE, PLAY, GAMEOVER, THEEND }
+    public E_SCENE_STATE m_eCurState = E_SCENE_STATE.NONE;
     public List<GameObject> m_listScenes; 
 
     void ShowScene(E_SCENE_STATE state)
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     void SetState(E_SCENE_STATE state)
     {
+        //if (m_eCurState == state) return;
         switch (state)
         {
             case E_SCENE_STATE.TITLE:
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
                 break;
             case E_SCENE_STATE.PLAY:
                 Time.timeScale = 1;
+                EventReset();
                 break;
             case E_SCENE_STATE.GAMEOVER:
                 Time.timeScale = 0;
@@ -79,7 +82,8 @@ public class GameManager : MonoBehaviour
         Destroy(responnerPlayer.m_objPlayer);
         Destroy(responnerEagle.m_objPlayer);
         Destroy(responnerOpossum.m_objPlayer);
-        cameraTracker.transform.position = responnerPlayer.transform.position;
+        cameraTracker.ResetPos(responnerPlayer.transform.position);
+        //SceneManager.LoadScene("game"); //기존씬정보가 저장되지않아 문제가 발생함.
     }
     public void EventSceneChange(int sceneNumber)
     {
