@@ -68,7 +68,10 @@ public class Player : MonoBehaviour
     {
         LvUp();
         if (Death() == true)
+        {
+            GameManager.GetInstance().LifeCount--;
             Destroy(this.gameObject);
+        }
     }
 
     //플레이어/주머니쥐/독수리:0,1,2

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public CameraTracker cameraTracker;
 
+    public int LifeCount = 0;
+
     public Sprite spriteKillMounster;
     //싱글톤
     static GameManager instance;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
     public RectTransform rectHPBarBG;
 
     public GUIStatusBar guiExpBar;
+
+    public Image imgKillMonster;
 
     public void SetHPBar(float hp, float maxhp)
     {
@@ -65,6 +69,7 @@ public class GameManager : MonoBehaviour
                 EventReset();
                 break;
             case E_SCENE_STATE.GAMEOVER:
+                imgKillMonster.sprite = spriteKillMounster;
                 Time.timeScale = 0;
                 break;
             case E_SCENE_STATE.THEEND:
@@ -98,10 +103,14 @@ public class GameManager : MonoBehaviour
                         }
                     }
 
-
+                    if(LifeCount <= 0)
+                    {
+                        SetState(E_SCENE_STATE.GAMEOVER);
+                    }
                 }
                 break;
             case E_SCENE_STATE.GAMEOVER:
+                
                 break;
             case E_SCENE_STATE.THEEND:
                 break;

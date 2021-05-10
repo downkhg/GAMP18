@@ -77,26 +77,20 @@ public class Dynamic : MonoBehaviour
 
         if(collider)
         {
-            Player player = collider.gameObject.GetComponent<Player>();
-            Player target = this.gameObject.GetComponent<Player>();
+            Player monster = collider.gameObject.GetComponent<Player>();
+            Player player = this.gameObject.GetComponent<Player>();
 
-            player.Attack(target);
+            monster.Attack(player);
             superMode.Active();
+
+            GameManager.GetInstance().spriteKillMounster =
+                  monster.GetComponent<SpriteRenderer>().sprite;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isJump = false;
-
-        if (collision.gameObject.tag == "Monster")
-        {
-            //Destroy(this.gameObject);
-            Player player = collision.gameObject.GetComponent<Player>();
-            Player target = this.gameObject.GetComponent<Player>();
-
-            player.Attack(target);
-        }
 
         Debug.Log("OnCollisionEnter2D:"+collision.gameObject.name);
     }

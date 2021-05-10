@@ -169,6 +169,8 @@ public class Eagle : MonoBehaviour
 
                 player.Attack(target);
                 superMode.Active();
+                GameManager.GetInstance().spriteKillMounster = 
+                    target.GetComponent<SpriteRenderer>().sprite;
             }
         }
     }
