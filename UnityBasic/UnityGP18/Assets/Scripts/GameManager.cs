@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
 
     public Image imgKillMonster;
 
+    public float NowTime = -1;
+    public float MaxTime = 60;
+
     public void SetHPBar(float hp, float maxhp)
     {
         float fRat = hp / maxhp;
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
             case E_SCENE_STATE.PLAY:
                 Time.timeScale = 1;
                 EventReset();
+                NowTime = 0;
                 break;
             case E_SCENE_STATE.GAMEOVER:
                 imgKillMonster.sprite = spriteKillMounster;
@@ -106,6 +110,17 @@ public class GameManager : MonoBehaviour
                     if(LifeCount <= 0)
                     {
                         SetState(E_SCENE_STATE.GAMEOVER);
+                    }
+
+                    if (NowTime >= 0)
+                    {
+                        NowTime += Time.deltaTime;
+
+                        if (NowTime >= MaxTime)
+                        {
+                            NowTime = -1;
+                            SetState(E_SCENE_STATE.GAMEOVER);
+                        }
                     }
                 }
                 break;
@@ -163,5 +178,10 @@ public class GameManager : MonoBehaviour
 
         if(cameraTracker.objTarget == null)
             cameraTracker.objTarget = responnerPlayer.m_objPlayer;   
+    }
+
+    private void OnGUI()
+    {
+        GUI.Box(new Rect(0, 0, 200, 20), string.Format("Time:{0}/{1}",NowTime,MaxTime));
     }
 }

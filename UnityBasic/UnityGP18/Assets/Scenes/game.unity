@@ -1158,7 +1158,7 @@ MonoBehaviour:
   responnerOpossum: {fileID: 87059473}
   responnerEagle: {fileID: 118617923}
   cameraTracker: {fileID: 653097027}
-  LifeCount: 1
+  LifeCount: 99999
   spriteKillMounster: {fileID: 0}
   m_eCurState: 0
   m_listScenes:
@@ -1172,6 +1172,8 @@ MonoBehaviour:
   rectHPBarBG: {fileID: 900486568}
   guiExpBar: {fileID: 845619269}
   imgKillMonster: {fileID: 1869805949}
+  NowTime: -1
+  MaxTime: 60
 --- !u!4 &393304029
 Transform:
   m_ObjectHideFlags: 0

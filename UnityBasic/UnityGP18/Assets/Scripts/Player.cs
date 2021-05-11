@@ -74,14 +74,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    //플레이어/주머니쥐/독수리:0,1,2
-    public int idx;
+    ////플레이어/주머니쥐/독수리:0,1,2
+    //public int idx;
 
-    private void OnGUI()
-    {
-        GUI.Box(new Rect(0 + 100 * idx, 0, 100, 20), this.gameObject.name);
-        GUI.Box(new Rect(0 + 100 * idx, 20, 100, 20), "HP:"+m_nHP);
-        GUI.Box(new Rect(0 + 100 * idx, 40, 100, 20), "Str:" + m_nStr);
-        GUI.Box(new Rect(0 + 100 * idx, 60, 100, 20), "Lv/Exp:" + m_nLv +"/"+m_nExp);
-    }
+    //private void OnGUI()
+    //{
+    //    GUI.Box(new Rect(0 + 100 * idx, 0, 100, 20), this.gameObject.name);
+    //    GUI.Box(new Rect(0 + 100 * idx, 20, 100, 20), "HP:"+m_nHP);
+    //    GUI.Box(new Rect(0 + 100 * idx, 40, 100, 20), "Str:" + m_nStr);
+    //    GUI.Box(new Rect(0 + 100 * idx, 60, 100, 20), "Lv/Exp:" + m_nLv +"/"+m_nExp);
+    //}
 }
