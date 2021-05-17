@@ -14,7 +14,7 @@ void AplusBMain()//함수의 정의
 	//(a:미지수-변수)와 (b:미지수-변수)를 더해서 (출력:printf)하는 프로그램 만들기(단, a와 b는 (입력)받는다)
 	int a;
 	int b;
-	scanf("%d", &a);
+	scanf("%d", &a); 
 	scanf("%d", &b);
 	printf("%d", a + b);
 }
@@ -29,12 +29,32 @@ void CircleAreaMain()
 {
 	int nRad;
 	int nArea;
-	float fPi = 3.14f;
+	const float fPi = 3.14f;//상수 변수: 변수의 초기값을 변경할수 없음.
+	//fPi = 3;
 	printf("Input Radius:");
 	scanf("%d",&nRad);
 
-	nArea = nRad * nRad * fPi;
+	nArea = (nRad * nRad) * fPi;
 	printf("%d*%d*%f = %d", nRad, nRad,fPi, nArea);
+}
+
+//사각형의 면적을 구하기(단, 사각형의 면적은 넓이*높이 이다)
+void RectAreaMain()
+{
+
+}
+
+void SizeMain()
+{
+	int x;
+
+	printf("x: %d\n", sizeof(x));
+	printf("char: %d\n", sizeof(char));
+	printf("int: %d\n", sizeof(int));
+	printf("short: %d\n", sizeof(short));
+	printf("long: %d\n", sizeof(long));
+	printf("float: %d\n", sizeof(float));
+	printf("double: %d\n", sizeof(double));
 }
 
 //IDE: 통합개발환경
