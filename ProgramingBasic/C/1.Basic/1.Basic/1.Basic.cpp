@@ -25,16 +25,18 @@ void AplusBMain()//함수의 정의
 //면적,반지름,3.14->데이터
 //반지름*반지름*3.14 = 면적 -> 알고리즘
 //정수형의로 계산하면 소숫점값이 사라질수있으므로, 실수를 계산할때는 실수를 이용하는것이 좋다.
+#define PI 3.14
 void CircleAreaMain()
 {
 	int nRad;
 	int nArea;
-	const float fPi = 3.14f;//상수 변수: 변수의 초기값을 변경할수 없음.
+	const float fPi = 3.14f;//상수 변수: 변수의 초기값을 변경할수 없음.(메모리 사용)
 	//fPi = 3;
 	printf("Input Radius:");
 	scanf("%d",&nRad);
 
-	nArea = (nRad * nRad) * fPi;
+	//nArea = (nRad * nRad) * fPi;
+	nArea = (nRad * nRad) * PI; //컴파일러단에서 정의된숫자로 교체해준다(메모리를 사용하지않음)
 	printf("%d*%d*%f = %d", nRad, nRad,fPi, nArea);
 }
 
@@ -46,9 +48,10 @@ void RectAreaMain()
 
 void SizeMain()
 {
-	int x;
+	//int x;//변수를 초기화하지않으면 쓰래기값이 도출된다.
+	int x = 0;//변수의 초기화: 변수의 값을 생성시 설정하는것.
 
-	printf("x: %d\n", sizeof(x));
+	printf("x[%d]:%d\n", sizeof(x),x);
 	printf("char: %d\n", sizeof(char));
 	printf("int: %d\n", sizeof(int));
 	printf("short: %d\n", sizeof(short));
@@ -68,5 +71,6 @@ void main()
 	//자신의 이니셜찍기
 	//printf("khg\n"); //;세미콜론
 	//AplusBMain();//함수의 호출
-	CircleAreaMain();
+	//CircleAreaMain();
+	SizeMain();
 }
