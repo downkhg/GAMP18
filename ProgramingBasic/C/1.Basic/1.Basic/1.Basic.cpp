@@ -22,7 +22,7 @@ void AplusBMain()//함수의 정의
 //데이터, 연산(알고리즘)
 //원의 (면적) 구하는 프로그램
 //(단, 원의면적은 (반지름)*(반지름)*(3.14) 이다)
-//면적,반지름,3.14->데이터
+//면적,반지름,3.14->데이터 -> 변수 > 실수
 //반지름*반지름*3.14 = 면적 -> 알고리즘
 //정수형의로 계산하면 소숫점값이 사라질수있으므로, 실수를 계산할때는 실수를 이용하는것이 좋다.
 #define PI 3.14
@@ -40,10 +40,19 @@ void CircleAreaMain()
 	printf("%d*%d*%f = %d", nRad, nRad,fPi, nArea);
 }
 
-//사각형의 면적을 구하기(단, 사각형의 면적은 넓이*높이 이다)
+//사각형의 (면적)을 구하기(단, 사각형의 면적은 (넓이)*(높이) 이다)
+//데이터: 면적,넓이,높이 -> 변수
+//알고리즘(연삼): 면적 = 넓이 * 높이
+//넓이와 높이는 지정되어있지않으므로 (입력:scanf)받도록 만들기
+//구한 면적을 (출력:printf)해라.
 void RectAreaMain()
 {
-
+	float fWidth;
+	float fHeight;
+	printf("RectHW ex) 100 20\n");
+	scanf("%f %f",&fWidth, &fHeight);
+	float fArea = fWidth * fHeight;
+	printf("%f = %f * %f\n", fArea, fWidth, fHeight);
 }
 
 void SizeMain()
@@ -72,5 +81,6 @@ void main()
 	//printf("khg\n"); //;세미콜론
 	//AplusBMain();//함수의 호출
 	//CircleAreaMain();
-	SizeMain();
+	//SizeMain();
+	RectAreaMain();
 }
