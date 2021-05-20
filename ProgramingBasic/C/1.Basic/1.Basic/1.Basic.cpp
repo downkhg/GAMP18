@@ -69,6 +69,96 @@ void SizeMain()
 	printf("double: %d\n", sizeof(double));
 }
 
+void CharTestMain()
+{
+	//아스키코드: 미국표준 문자
+	char cCodeA = 'A';
+	int nCodeA = 65;
+	char cCodeB = 'B';
+	int nCodeB = 66;
+
+	printf("A:%d/%c\n", nCodeA, cCodeA);
+	printf("B:%d/%c\n", nCodeB, cCodeB);
+
+	printf("A:%d/%c\n", cCodeA, nCodeA);
+	printf("B:%d/%c\n", cCodeB, nCodeB);
+}
+//빛이 지구에 도착하는 시간을 구하여라.
+//단, 빛의 속도는 30만km/s
+//태양과 지구사이 거리는 1억4960만이다.
+//시간을 초로 구하기
+//시간을 분:초로 구하기
+//데이터: 태양과지구사이거리,빛의속도 ->실수, 시간(초)->정수
+//알고리즘: 태양과 지구사이 거리에 초당 빛의 이동거리가 몇개가 들어가는가? 
+//태양과지구사이거리 / 빛의속도 = 빛이 지구에 도달한 시간(초)
+void LightSpeedMain()
+{
+	float fDist = 14960;
+	float fLightSpeed = 30;
+
+	int nSec = fDist / fLightSpeed;
+
+	printf("%d sec\n",nSec);
+	int nMin = nSec / 60;
+	nSec = nSec - nMin * 60;
+	nSec = nSec % 60;
+	printf("%d:%d\n", nMin, nSec);
+}
+
+void OpMain()
+{
+	int nDataA = 10;
+	int nDataB = 20;
+	int nResultA;
+	int nResultB;
+
+	nResultA = ++nDataA; //11 //먼저연산이됨
+	nResultB = nDataB++; //20 //대입이후 연산이 일어남.
+
+	printf("Data/ResultA:%d/%d\n", nDataA, nResultA);//11/11
+	printf("Data/ResulaB:%d/%d\n", nDataB, nResultB);//21/20
+
+	//애초에 한줄코딩하지않으면 이런문제도 없음.
+	nDataA++; //12
+	nResultA = nDataA; //12
+	++nDataB; //22
+	nResultB = nDataB; //22
+
+	printf("Data/ResultA:%d/%d\n", nDataA, nResultA);//11/11
+	printf("Data/ResulaB:%d/%d\n", nDataB, nResultB);//21/20
+
+	nDataA = nDataA + 1; //12+1 -> 13
+	printf("DataA:%d\n", nDataA);//13
+
+	nDataB += 1; //22+1 -> 23
+	printf("DataB:%d\n", nDataB);//23
+
+	//값x,y를 입력받아 관계연산의 결과를 출력하라
+	//(단, 관계연산은 ==,!=,<,>,<=,<=가 있다.)
+	//{
+	//	float x, y;
+	//	//1:참 0:거짓
+	//	//모든명제를 확인할수있도록 값을 모두 확인해보는것이 중요하다.
+	//	scanf("%f %f", &x, &y); //10 20, 20 10, 10 10
+	//	printf("%f == %f = %d\n", x, y, x == y); //10은 20과 같다 = 0, 0, 1 
+	//	printf("%f != %f = %d\n", x, y, x != y); //10은 20과 다르다 = 1, 1, 0
+	//	printf("%f < %f = %d\n", x, y, x < y); //10보다 20이 크다 = 1, 0 , 0
+	//	printf("%f > %f = %d\n", x, y, x > y); //10보다 20이 작다 = 0, 1 , 0
+	//	printf("%f <= %f = %d\n", x, y, x <= y); //10보다 20이 크거나 같다 = 1 0 , 1
+	//	printf("%f >= %f = %d\n", x, y, x >= y); //10보다 20이 작거나 같다 = 0 1 , 1
+	//}
+
+	//2 < x < 5의 연산결과를 프로그래밍에서 연산하고 출력하라.
+	//(단, x의 값은 입력받는다.)
+	{
+		int x;
+		scanf("%d", &x);//3
+		printf("2 < x = %d\n", 2 < x); //2보다 3은 크다 O 
+		printf("x < 5 = %d\n", x < 5); //2보다 5는 크다 X
+		printf("2 < x < 5 = %d\n", 2 < x && x < 5); //O && X // &&:둘다 참
+	}
+}
+
 //IDE: 통합개발환경
 void main()
 { //구문(블럭)
@@ -82,5 +172,8 @@ void main()
 	//AplusBMain();//함수의 호출
 	//CircleAreaMain();
 	//SizeMain();
-	RectAreaMain();
+	//RectAreaMain();
+	//CharTestMain();
+	//LightSpeedMain();
+	OpMain();
 }
