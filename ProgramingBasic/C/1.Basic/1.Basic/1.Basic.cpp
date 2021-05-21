@@ -159,6 +159,61 @@ void OpMain()
 	}
 }
 
+void BitMaskMain()
+{
+	//16진수: 0~9 A(10)~F(15)
+	unsigned int color = 0x00385555;
+	unsigned int result;
+
+	printf("PixelColor:%#08x\n",color);
+	result = color & 0x00ffff00;
+	printf("Mask:%#08x\n", result);
+	result = result >> 16;
+	printf("Result:%#08x\n", result);
+}
+//점수를 입력하면 A~F까지의 등급을 출력하는 프로그램 만들기
+//(단, A: 100~91, B: 90~81, C:80~71, D:70~61, F:60~0)
+//데이터: 점수-int, 등급-char:
+//알고리즘: A-100 >= S > 90, B-90 >= S > 80, C-80 >= S > 70, D-70 >= S > 60, F: 60 >= S 
+void GradeTestIfMain()
+{
+	int nScore; //S
+	char cGrade;
+
+	if (100 >= nScore && nScore > 90)
+		cGrade = 'A';
+	if (90 >= nScore && nScore > 80)
+		cGrade = 'B';
+	if (80 >= nScore && nScore > 70)
+		cGrade = 'C';
+	if (70 >= nScore && nScore > 60)
+		cGrade = 'D';
+	if (60 >= nScore)
+		cGrade = 'F';
+
+	printf("Score/Grade: %d:%c\n",nScore, cGrade);
+}
+
+void GradeTestIfElseMain()
+{
+	int nScore; //S
+	char cGrade;
+
+	
+	if (nScore > 90)
+		cGrade = 'A';
+	else if (nScore > 80)
+		cGrade = 'B';
+	else if (nScore > 70)
+		cGrade = 'C';
+	else if (nScore > 60)
+		cGrade = 'D';
+	else
+		cGrade = 'F';
+
+	printf("Score/Grade: %d:%c\n", nScore, cGrade);
+}
+
 //IDE: 통합개발환경
 void main()
 { //구문(블럭)
@@ -175,5 +230,6 @@ void main()
 	//RectAreaMain();
 	//CharTestMain();
 	//LightSpeedMain();
-	OpMain();
+	//OpMain();
+	BitMaskMain();
 }
