@@ -177,19 +177,42 @@ void BitMaskMain()
 //알고리즘: A-100 >= S > 90, B-90 >= S > 80, C-80 >= S > 70, D-70 >= S > 60, F: 60 >= S 
 void GradeTestIfMain()
 {
-	int nScore; //S
-	char cGrade;
+	int nScore; //?
+	char cGrade; //?
 
+	printf("Socre:");
+	scanf("%d", &nScore); //
+
+	//100 >= 50 -> T && 50 > 90 F => F
 	if (100 >= nScore && nScore > 90)
+	{//중괄호,블럭,구문
 		cGrade = 'A';
+		printf("Select %c\n",cGrade);
+	}
+	//90 >= 50 -> T && 50 > 80 F => F
 	if (90 >= nScore && nScore > 80)
+	{
 		cGrade = 'B';
+		printf("Select %c\n", cGrade);
+	}
+	//80 >= 50 -> T && 50 > 80 -> F => F
 	if (80 >= nScore && nScore > 70)
+	{
 		cGrade = 'C';
+		printf("Select %c\n", cGrade);
+	}
+	//70 >= 50 -> T && 50 > 70 -> F => F
 	if (70 >= nScore && nScore > 60)
+	{
 		cGrade = 'D';
+		printf("Select %c\n", cGrade);
+	}
+	//60 <= 50 -> T
 	if (60 >= nScore)
+	{
 		cGrade = 'F';
+		printf("Select %c\n", cGrade);
+	}
 
 	printf("Score/Grade: %d:%c\n",nScore, cGrade);
 }
@@ -199,11 +222,17 @@ void GradeTestIfElseMain()
 	int nScore; //S
 	char cGrade;
 
+	printf("Socre:");
+	scanf("%d", &nScore);
 	
 	if (nScore > 90)
+	{
 		cGrade = 'A';
+	}
 	else if (nScore > 80)
+	{
 		cGrade = 'B';
+	}
 	else if (nScore > 70)
 		cGrade = 'C';
 	else if (nScore > 60)
@@ -212,6 +241,17 @@ void GradeTestIfElseMain()
 		cGrade = 'F';
 
 	printf("Score/Grade: %d:%c\n", nScore, cGrade);
+}
+//1.컵용량이 100ml이상이면 L, 100미만 S를 출력하는 프로그램 만들기
+void CupSizeMain()
+{
+
+}
+
+//컵용량이150초과면 L,150이하 100초과 M,100이하 S를 출력하는 프로그램 만들기
+void CupSizePlusMain()
+{
+
 }
 
 //IDE: 통합개발환경
@@ -231,5 +271,7 @@ void main()
 	//CharTestMain();
 	//LightSpeedMain();
 	//OpMain();
-	BitMaskMain();
+	//BitMaskMain();
+	GradeTestIfMain();
+	GradeTestIfElseMain();
 }
