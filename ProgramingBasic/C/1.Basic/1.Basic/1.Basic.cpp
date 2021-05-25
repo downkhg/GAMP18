@@ -243,15 +243,147 @@ void GradeTestIfElseMain()
 	printf("Score/Grade: %d:%c\n", nScore, cGrade);
 }
 //1.컵용량이 100ml이상이면 L, 100미만 S를 출력하는 프로그램 만들기
+//데이터: 컵용량 -> int 
+//알고리즘: 컵용량 >= 100 => L 100 < 컵용량 => S
 void CupSizeMain()
 {
+	int nCupSize = 100;
 
+	if (nCupSize >= 100)
+	{
+		printf("L:%d\n",nCupSize);
+	}
+	else
+	{
+		printf("S:%d\n", nCupSize);
+	}
 }
 
 //컵용량이150초과면 L,150이하 100초과 M,100이하 S를 출력하는 프로그램 만들기
+//데이터: 컵용량 -> int 
+//알고리즘: 컵용량 > 150 => L 컵용량 <= 150,컵용량 > 100 => M  컵용량 <= 100 => S
 void CupSizePlusMain()
 {
 
+}
+//예) 
+// 1+1      //1-1
+// 1+1 = 2  //1-1 = 0
+//위와 같이 입력하면 과같이 사칙연산이 가능한 계산기 만들기
+//데이터: 계산값2개(실수),연산기호(문자)
+//알고리즘: 연산기호(+,-,/,*)를 입력하면, 입력받은 두수를 더하여 출력하기
+//*입력방법을 모르겠다면 일단 알수있는 방법으로 만들어보기
+void CalculatorMain()
+{
+	float fDataA;
+	float fDataB;
+	float fResult;
+	char cOp;
+
+	printf("Input ex)1+1, 2-2\n");
+	scanf("%f%c%f", &fDataA, &cOp, &fDataB);
+	/*scanf("%c", &cOp);
+	scanf("%f", &fDataA);
+	scanf("%f", &fDataB);
+
+	if (cOp == '+')
+		fResult = fDataA + fDataB;
+	else if (cOp == '-')
+		fResult = fDataA - fDataB;
+	else if (cOp == '/')
+		fResult = fDataA / fDataB;
+	else if (cOp == '*')
+		fResult = fDataA * fDataB;
+	else
+	{
+		printf("!?!?!?!?!!?!?!?");
+		return;
+	}*/
+
+	switch (cOp)
+	{
+	case '+':
+		fResult = fDataA + fDataB;
+		break;
+	case '-':
+		fResult = fDataA + fDataB;
+		break;
+	case '*':
+		fResult = fDataA + fDataB;
+		break;
+	case '/':
+		fResult = fDataA + fDataB;
+		break;
+	default:
+		printf("!?!?!?!?!!?!?!?");
+		return;
+		break;
+	}
+
+	printf("%f %c %f = %f", fDataA, cOp, fDataB, fResult);
+}
+
+void MounthMain()
+{
+	int month, days;
+
+	printf("달을 입력하시오: ");
+	scanf("%d", &month);
+
+	switch (month)
+	{
+	case 2:
+		days = 28;
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		days = 30;
+		break;
+	default:
+		days = 31;
+		break;
+	}
+	printf("%d월의 일수는 %d입니다.\n", month, days);
+
+}
+
+//(문자:변수)를 (입력:scanf)받으면 
+//대문자,소문자,숫자,기타를 종류에 
+//따라 보여주는 프로그램
+//(단, 알파벳이 뒤에 올수록 숫자가 크다)
+void CheckCharMain()
+{
+	char cInput;
+	printf("A~Z: %d~%d\n", 'A', 'Z');
+	printf("a~z: %d~%d\n", 'a', 'z');
+	printf("0~9: %d~%d\n", '0', '9');
+	scanf("%c", &cInput);
+
+	if (cInput >= 'A' && cInput <= 'Z')
+		printf("%d~%d  %c is L\n", 'A', 'Z', cInput);
+	else if (cInput >= 'a' && cInput <= 'z')
+		printf("%d~%d  %c is S\n", 'a', 'z', cInput);
+	else if (cInput >= '0' && cInput <= '9')
+		printf("%d~%d  %c is Num\n", '0', '9', cInput);
+	else
+		printf("%c(%d) etc .\n", cInput, cInput);
+}
+
+//마일을 미터로 변환하는 프로그램(0~2마일까지 변환한다.)
+//데이터: 마일, 미터
+//알고리즘: 마일*1609 = 미터
+//0.알고리즘 순서대로 모든 작동이 완료될때까지 작성한다. -> 어렵다면 여기까지라도 해보자.
+//1.반복하는 구문을 찾음
+//2.반복하는 조건을 찾는다. 
+//3.끝나는 조건을 찾는다 -> 마일 == 2
+//4.조건을 만족하게 변수를 연산한다 -> 마일++
+//5.만약 조건에 맞다면 break를 한다.
+//6.반복되는 조건을 찾는다 -> 마일 != 2, 마일 < 2
+void MailtoMetterMain()
+{
+	
 }
 
 //IDE: 통합개발환경
@@ -272,6 +404,9 @@ void main()
 	//LightSpeedMain();
 	//OpMain();
 	//BitMaskMain();
-	GradeTestIfMain();
-	GradeTestIfElseMain();
+	//GradeTestIfMain();
+	//GradeTestIfElseMain();
+	//CupSizeMain();
+	//CalculatorMain();
+	CheckCharMain();
 }
