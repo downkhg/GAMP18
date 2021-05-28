@@ -88,8 +88,6 @@ void PaperForMain()
 
 }
 
-
-
 //반감기: 방사능물질의양이 1/2가 되는 시간
 //방사능 물질의 양이 2000년이 지난후 물질의 양은?
 //반감기:400년
@@ -147,7 +145,27 @@ y01234x
 //(조건문없이가능) -> y가 증가할때마다 x의 값이 증가한다.
 void RectMain()
 {
+	/* 
+	//반복문을 사용하지않으면 노가다
+	//printf("#####\n");
+	//printf("#####\n");
+	//printf("#####\n");
+	//printf("#####\n");
+	//printf("#####\n");
+	*/
 
+	//반복하여 조건처리가 가능하지만 계단모양은 처리가 어렵다.
+	//for (int i = 0; i < 5; i++)
+	//	printf("#####\n");
+
+	for (int y = 0; y < 5; y++)
+	{
+		for (int x = 0; x < 5; x++)
+		{
+			printf("#");
+		}
+		printf("\n");
+	}
 }
 void WindowMain()
 {
@@ -162,5 +180,6 @@ void main()
 {
 	//BateriaMain();
 	//PaperAreaMain();
-	BateriaForMain();
+	//BateriaForMain();
+	RectMain();
 }
