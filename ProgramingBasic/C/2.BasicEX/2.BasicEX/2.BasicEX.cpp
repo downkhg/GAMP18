@@ -1,69 +1,63 @@
 #include <stdio.h>
+//초기의 (세균)의 10마리고 1시간마다 2배씩 늘어난다면 100마리 이상이 되는데 (시간)이 얼마나 걸리는가?
 //1.데이터와 알고리즘을 분리한다.
+//데이터: 시간, 세균
+//알고리즘: 세균수 * 2, 시간+1, 세균수가 100마리이상이 되는 시간을 출력한다.
 //2.데이터는 변수 알고리즘은 연산,반복,조건 등이 조합된다.
 //3.반복되는 경우는 먼저 반복하고 정답을 출력한다.
-/*
 void BateriaMain()
 {
 	int nBateria = 10;
 	int nTime = 0;
+	/*
+	//1. 조건을 만족할때까지 반복을 해본다.
+	//nBateria = nBateria * 2; //10*2 = 20
+	//nTime++; //0+1 = 1
 
-	nBateria = nBateria * 2;//20
-	nTime = 1;
+	//nBateria = nBateria * 2; //20*2 = 40
+	//nTime++; //1+1 = 2
 
-	nBateria = nBateria * 2;//40
-	nTime = 2;
+	//nBateria = nBateria * 2; //40*2 = 80
+	//nTime++; //2+1 = 3
 
-	nBateria = nBateria * 2;//80
-	nTime = 3;
-
-	nBateria = nBateria * 2;//160
-	nTime = 4;
-
-	printf("Time:%d\n", nTime);
-}
-*/
-//4.반복되는 규칙성을 찾아서 무한반복을 돌린후 반복된 과정을 모두 확인한다.
-//(프로그래머가 아니라면 여기서 마쳐도 무방함. 그러나 정치질(약점잡아 늘어지기)에 희생량이 될수있음)
-/*
-void BateriaMain()
-{
-	int nBateria = 10;
-	int nTime = 0;
-
-	while (true)
+	//nBateria = nBateria * 2; //80*2 = 160
+	//nTime++; //3+1 = 4
+	*/
+	
+	//while (true)//2.반복되는 부분을 찾고 무한루프를 돌린다.
+	while( nBateria < 100) //3.break문에 조건의 반대경우를 while문의 조건으로 설정한다.
 	{
-		nBateria = nBateria * 2;//20
-		nTime = nTime + 1;
+		nBateria = nBateria * 2; //10*2 = 20
+		nTime++; //0+1 = 1
+		//4.반복문안에서 모든 변수의 값을 확인하여 정상적으로 진행되었는지 확인한다.
 		printf("Bateria:%d Time:%d\n", nBateria, nTime);
-		if (nBateria > 100) break;
+		//if (nBateria >= 100) break;
 	}
-}
-*/
-//5.break문의 조건을 반대로 if문에 넣는다.(초과,미만:불포함  이상,이하:포함)
-//세균은 10마리를 배양하고 세균수가 100마리 이상이 되는 시간은?
-//세균은 1시간마다 2배씩 증가한다.
-//데이터: 세균수,시간
-//알고리즘: 세균수*2, 1시간마다, 100마리 이상이될때까지
-void BateriaMain()
-{
-	int nBateria = 10;
-	int nTime = 0;
-
-	while (nBateria <= 100)
-	{
-		nBateria = nBateria * 2;//20
-		nTime = nTime + 1;
-		printf("Bateria:%d Time:%d\n", nBateria, nTime);
-		//if (nBateria > 100) break;
-	}
+	printf("Time:%d\n",nTime);
 }
 
 //종이를 접으면 (면적)이 (1/2로 줄어)들때,
-//(종이면적이 1/10이하)로 줄어들려면, (몇번접)아야하는가?
+//(초기면적의 종이면적이 1/10이하)로 줄어들려면, (몇번접)아야하는가?
+//데이터: 면적, 접은횟수
+//알고리즘: 종이의 면적이 1/10이하가 되면 몇번 접어야하는가?
+//1.반복문을 이용하여 문제를 해결한다.
+//2.작동결과와 데이터의 변화를 분석하여 문제점을 찾는다 -> 계산결과가 소숫점은 무시된다 -> 실수로 변경
+//3.2와 같은 과정에서 연산결과를 변수에 넣지않아 실수할수 있으므로 연산이되는 값은 무조건 변수에 저장한다.
 void PaperAreaMain()
 {
-
+	float fArea = 100;
+	float fCount = 0;
+	float fMinArea = fArea * 0.1f;
+	//while (true)
+	//while(!(fArea <= fMinArea))
+	while (fArea >= fMinArea)
+	{
+		fArea = fArea * 0.5f;
+		fCount++;
+		printf("Area:%f, Count:%f, MinArea:%f\n", fArea,fCount,fMinArea);
+		if (fArea < fMinArea) break;
+	}
+	printf("Area:%f\n", fArea);
 }
 
 //(세균:변수) 10마리를 배양하여 (10시간후:조건)의 세균수를 구하여라.
@@ -71,7 +65,19 @@ void PaperAreaMain()
 //세균수:10 //시간:0  //세균수*=4
 void BateriaForMain()
 {
+	int nBateria = 10;
+	int nTime = 0;
 
+	//while (true) //3.break문에 조건의 반대경우를 while문의 조건으로 설정한다.
+	for(/*초기화생략가능*/; nTime <= 10; nTime++ )//되도록이면 조건을 생략하는것은 하지말것!
+	{
+		nBateria = nBateria * 2; //10*2 = 20
+		//nTime++; //0+1 = 1
+		//4.반복문안에서 모든 변수의 값을 확인하여 정상적으로 진행되었는지 확인한다.
+		printf("Bateria:%d Time:%d\n", nBateria, nTime);
+		//if (nTime == 10) break;
+	}
+	//printf("Time:%d\n", nTime);
 }
 
 //종이를 10 번접으면 면적이 몇이되는가?
@@ -88,6 +94,8 @@ void PaperForMain()
 //방사능 물질의 양이 2000년이 지난후 물질의 양은?
 //반감기:400년
 //방사능물질의양: 100
+//데이터: 방사능물질량, 반감기, 시간
+//알고리즘: 방사능물질량*0.5 = 방사능물질량,  시간+반감기
 void HalfLifeForMain()
 {
 
@@ -152,5 +160,7 @@ void StiarMain()
 
 void main()
 {
-	BateriaMain();
+	//BateriaMain();
+	//PaperAreaMain();
+	BateriaForMain();
 }
