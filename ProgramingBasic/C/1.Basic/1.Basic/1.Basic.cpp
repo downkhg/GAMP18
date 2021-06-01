@@ -426,6 +426,31 @@ void MailtoMetterForMain()
 	//17
 }
 
+void TransCharMain()
+{
+	char letter;
+
+	while (1)
+	{
+		printf("소문자를 입력하시오: ");
+		scanf(" %c", &letter);
+
+		if (letter == 'Q')
+			break;
+
+		//굳이 반대조건으로 사용할 필요가있을까?
+		/*if (letter < 'a' || letter > 'z')
+			continue;*/
+
+		if (letter >= 'a' && letter <= 'z')
+		{
+			letter -= 32;
+			printf("변환된 대문자는 %c입니다.\n", letter);
+		}
+	}
+
+}
+
 //IDE: 통합개발환경
 void main()
 { //구문(블럭)
@@ -449,5 +474,6 @@ void main()
 	//CupSizeMain();
 	//CalculatorMain();
 	//CheckCharMain();
-	MailtoMetterMain();
+	//MailtoMetterMain();
+	TransCharMain();
 }
