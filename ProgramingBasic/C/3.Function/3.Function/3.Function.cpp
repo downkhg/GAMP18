@@ -13,7 +13,9 @@ int Combination(int n, int r);
 
 void FunctionMain();
 
-int g_nData;//전역변수의 선언
+//전역변수: 어떤함수에서든 접근가능한 변수
+//전역변수의 선언
+extern int g_nData;
 
 void main()
 {
@@ -21,6 +23,8 @@ void main()
 	printf("Data:%d\n",g_nData);
 	FunctionMain();//함수의호출(매개변수x)
 }
+
+int g_nData;//전역변수의 선언 //0으로 초기화된다.
 
 void FunctionMain()
 {
@@ -49,6 +53,8 @@ void FunctionMain()
 
 
 }
+
+
 
 //리턴값: 함수에서 계산하여 외부로 넘겨주는 값. 리턴을 만나면 함수를 종료된다.
 //매개변수: 함수에 외부에서 값을 전달해주는 변수.
@@ -80,13 +86,15 @@ int Square(int a)
 	printf("2.SquareCall:[%d]%d\n", &a, a);
 	return a;
 }
-//전역변수: 어떤함수에서든 접근가능한 변수
-//지역변수: 함수안에서만 존재하는 변수, 함수안에서 생성되고 호출이 끝나면 소멸된다. //nResult,i,n(매개변수도 지역변수의 일종)
+
+//지역변수: 함수(블럭)안에서만 존재하는 변수, 함수안에서 생성되고 호출이 끝나면 소멸된다. //nResult,i,n(매개변수도 지역변수의 일종)
 int Factorial(int n)//3 //0
 {//함수안에 생성
 	int nResult = 1; //1 //1
 	for (int i = 1; i <= n; i++)//1,1<=3->T//2,2<=3->T//3,3<=3 ->T //1 <= 0 ->F
+	{
 		nResult *= i;//1*1 = 1 // 1*2 = 2 // 2*3 = 6
+	}
 	return nResult;//6 //1
 }//함수가 끝날때 소멸
 
