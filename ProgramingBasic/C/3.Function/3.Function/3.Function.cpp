@@ -14,8 +14,8 @@ int Combination(int n, int r);
 void FunctionMain();
 
 //전역변수: 어떤함수에서든 접근가능한 변수
-//전역변수의 선언
-extern int g_nData;
+//모든 함수에서 접근해야하므로, 함수 생성전에 선언되어야한다.
+int g_nData;//전역변수의 선언 //0으로 초기화된다.
 
 void main()
 {
@@ -23,8 +23,6 @@ void main()
 	printf("Data:%d\n",g_nData);
 	FunctionMain();//함수의호출(매개변수x)
 }
-
-int g_nData;//전역변수의 선언 //0으로 초기화된다.
 
 void FunctionMain()
 {
