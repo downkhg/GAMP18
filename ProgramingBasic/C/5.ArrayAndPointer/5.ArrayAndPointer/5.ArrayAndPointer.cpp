@@ -77,7 +77,6 @@ void CopyArrayPtr(const int* arr, int* copyarr, int size)
 
 void PointerMain()
 {
-
 	int nData = 10;
 	float fData = 3.14f;
 	int* pIntData = &nData;
