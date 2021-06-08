@@ -1,3 +1,10 @@
+/*##################################
+배열과 포인터와 함수(수업용)
+파일명: ArrayAndPointer.cpp
+작성자: 김홍규 (downkhg@gmail.com)
+마지막수정날짜: 2021.06.08
+버전: 1.10
+###################################*/
 #include <stdio.h>
 
 void ArrayMain();
@@ -158,7 +165,7 @@ void main()
 	//FunctionAndArrayMain();
 	//FunctionAndPointerMain();
 	//Array2DMain();
-	FakeArray2DMain();
+	//FakeArray2DMain();
 }
 //배열: 변수를 연속적으로 만드는것
 //인덱스: 배열의 원소에 접근하기위한 것 0 ~ n-1
@@ -191,7 +198,6 @@ void ArrayMain()
 //포인터: 주소값을 가지는 변수
 void PointerMain()
 {
-
 	int nData = 10;
 	float fData = 3.14f;
 	int* pIntData = &nData;
