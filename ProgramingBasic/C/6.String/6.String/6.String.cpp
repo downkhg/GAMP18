@@ -68,8 +68,67 @@ void StringLibraryMain()
 		printf("%s != %s", strFirstName, strFirstName);
 }
 
+//데이터: 정답(문자열), 질문(문자열), 입력(문자)
+//알고리즘: 문자를 입력하여 (정답에 들어있는 문자)라면 
+//			(질문에 표시: 입력문자를 정답에 있는 (위치:인덱스)에 대입한다)한다.
+//			정답을 맞출때까지 반복한다.
+
+//다음과 같이 출력되는 단어 맞추기 게임만들기
+//Q: _ _ _ _
+//A: Z
+//Z는 없는 문자입니다.
+//Q: _ _ _ _
+//A: G
+//Q: G _ _ _
+//A: A
+//......
+//Q: G A M _
+//A: E
+//Q: G A M E
+//정답입니다!
+//일반: 어떤 방법을 사용하든 문제 풀어보기
+//심화: 위와 같은 문제를 인덱스접근이외에 문자열 함수만 이용하여 구현하기
+void HangManGameMain()//이코드에서 문제점을 찾아서 고쳐보자.
+{
+	char strA[] = "GAME";
+	char strQ[] = "____";
+	char cInput = 0;
+	while (true)//질문과 정답이 같지않은동안 반복한다.
+	{
+		printf("Q:%s\n", strQ);
+		if (!strcmp(strA, strQ)) break;
+		printf("A:");
+		scanf("%c", &cInput);
+
+		bool bCheck = false;
+		printf("Input:%c\n",cInput);
+		char* pChar = strchr(strA, cInput);
+		if (pChar != NULL)
+		{
+			int nIdx = pChar - strA;
+			printf("%d - %d = %d\n", pChar,strA, nIdx);
+			strQ[nIdx] = cInput;
+		}
+		else
+			printf("%c는 없는 문자입니다.\n", cInput);
+		//for (int i = 0; i < strlen(strA); i++)
+		//{
+		//	if (strA[i] == cInput) //정답
+		//	{
+		//		strQ[i] = cInput;
+		//		bCheck = true;
+		//		break;
+		//	}
+		//}
+		
+		//if (bCheck == false) printf("%c는 없는 문자입니다.\n", cInput);
+	}
+	printf("정답입니다!!!\n");
+}
+
 void main()
 {
 	//StringMain();
-	StringLibraryMain();
+	//StringLibraryMain();
+	HangManGameMain();
 }
