@@ -159,11 +159,12 @@ void FakeArray2DMain()
 
 void main()
 {
+	
 	//ArrayMain();
 	//PointerMain();
 	//ArrayAndPointerMain();
 	//FunctionAndArrayMain();
-	//FunctionAndPointerMain();
+	FunctionAndPointerMain();
 	//Array2DMain();
 	//FakeArray2DMain();
 }
@@ -310,7 +311,7 @@ void SwapVal(int a, int b)
 }
 void SwapPtr(int* pA, int* pB)
 {
-	printf("SwapPtr[%d]%d<->[%d]%d\n", pA, *pA, pB, *pB);
+	printf("SwapPtr[%d]%d<->[%d]%d\n", &pA, pA, &pB, pB);
 	int temp = *pA;
 	*pA = *pB;
 	*pB = temp;
@@ -326,11 +327,15 @@ void FunctionAndPointerMain()
 {
 	int nDataA = 10;
 	int nDataB = 20;
-	printf("Origin[%d]%d<->[%d]%d\n", &nDataA, nDataA, &nDataB, nDataB);
+	printf("Origin[%d]%d<->[%d]%d\n", 
+		&nDataA, nDataA, &nDataB, nDataB);
 	SwapVal(nDataA, nDataB);
-	printf("SwapVal[%d]%d<->[%d]%d\n", &nDataA, nDataA, &nDataB, nDataB);
+	printf("SwapVal[%d]%d<->[%d]%d\n", 
+		&nDataA, nDataA, &nDataB, nDataB);
 	SwapPtr(&nDataA, &nDataB);
-	printf("SwapPtr[%d]%d<->[%d]%d\n", &nDataA, nDataA, &nDataB, nDataB);
+	printf("SwapPtr[%d]%d<->[%d]%d\n", 
+		&nDataA, nDataA, &nDataB, nDataB);
 	SwapRef(nDataA, nDataB);
-	printf("SwapRef[%d]%d<->[%d]%d\n", &nDataA, nDataA, &nDataB, nDataB);
+	printf("SwapRef[%d]%d<->[%d]%d\n", 
+		&nDataA, nDataA, &nDataB, nDataB);
 }
