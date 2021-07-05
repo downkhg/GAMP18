@@ -23,7 +23,8 @@ void MapMain();
 void main()
 {
 	//Vector2Main();
-	VectorMain();
+	//VectorMain();
+	ListMain();
 }
 
 void VectorMain()
@@ -33,7 +34,7 @@ void VectorMain()
 	
 	//배열값초기화
 	for (int i = 0; i < datastruct.size(); i++)
-		datastruct[i] = 10 * nSize - nSize * i;
+		datastruct[i] = 10 * nSize - nSize * i; //10 * 10 - 10 * 0 = 100
 	//인덱스를 이용한 출력
 	cout << "print:";
 	for (int i = 0; i < datastruct.size(); i++)
@@ -94,31 +95,44 @@ void ListMain()
 {
 	int nSize = 10;
 	list<int> datastruct(nSize);
-
-	////배열값초기화
-	//for (int i = 0; i < datastruct.size(); i++)
-	//	datastruct[i] = 10 * nSize - nSize * i;
-	////인덱스를 이용한 출력
-	//cout << "print:";
-	//for (int i = 0; i < datastruct.size(); i++)
-	//	cout << i << ":" << datastruct[i] << ",";// cout == printf
-	//cout << endl;//줄바꿈문자
-	//datastruct.resize(5);//동적배열은 만든 크기를 중간에 늘리거나 줄일수있다.
-	//cout << "resize:";
-	//for (int i = 0; i < datastruct.size(); i++)
-	//	cout << i << ":" << datastruct[i] << ",";// cout == printf
-	//cout << endl;//줄바꿈문자
-	//추가
-	datastruct.push_back(0);
-	datastruct.push_front(-10);
 	list<int>::iterator it;
-	cout << "Result:";
+	//초기화
+	int i = 0;
+	for (it = datastruct.begin(); it != datastruct.end(); it++)
+	{
+		*it = 10 * nSize - nSize * i; i++;
+	}
+	//인덱스를 이용한 출력
+	cout << "Init:";
 	for (it = datastruct.begin(); it != datastruct.end(); it++)
 		cout << *it << ",";
 	cout << endl;
+	datastruct.resize(5);//동적배열은 만든 크기를 중간에 늘리거나 줄일수있다.
+	cout << "resizeResult:";
+	for (it = datastruct.begin(); it != datastruct.end(); it++)
+		cout << *it << ",";
+	cout << endl;
+	//추가
+	datastruct.push_back(0);
+	datastruct.push_front(-10);
+	cout << "PushResult:";
+	for (it = datastruct.begin(); it != datastruct.end(); it++)
+		cout << *it << ",";
 	cout << endl;//줄바꿈문자
+	//이동
+	list<int>::iterator itMove = datastruct.begin();
+	if (itMove != datastruct.end())
+		cout << "itMove(begin):" << *itMove << endl;
+	itMove++;
+	if (itMove != datastruct.end())
+		cout << "itMove(begin next):" << *itMove << endl;
+	itMove++;
+	if (itMove != datastruct.end())
+		cout << "itMove(begin next next):" << *itMove << endl;
+	itMove--;
+	if (itMove != datastruct.end())
+		cout << "itMove(begin next next prev):" << *itMove << endl;
 	//이터레이터를 이용한 각 원소 접근하기
-	list<int>::iterator it;
 	cout << "Result:";
 	for (it = datastruct.begin(); it != datastruct.end(); it++)
 		cout << *it << ",";
@@ -153,6 +167,8 @@ void ListMain()
 	for (it = datastruct.begin(); it != datastruct.end(); it++)
 		cout << *it << ",";
 	cout << endl;
+	if (datastruct.empty())//if (datastruct.end() == datastruct.begin())
+		cout << "List is all clear!" << endl;
 }
 //1.벡터(STL)와 배열의 차이점은?
 //2.이터레이터는 포인터와 유사하다 차이점은 무엇인가?
