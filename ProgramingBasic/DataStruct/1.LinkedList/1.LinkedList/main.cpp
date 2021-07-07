@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h> //메모리 동적할당 헤더
 #include <crtdbg.h> //메모리 누수 탐지 헤더
-//#include  "linkedlistClass.h"
+#include "1.1.LinkedList.h"
 
 struct SNode {
 	int nData;
@@ -71,7 +71,8 @@ void LinkedListTestMain()
 //main()함수 내 코드는 추가는 가능하지만 삭제는 하지말것!
 void main()
 {
-	InputAdd();
+	LinkedListSampleTestMain();
+	//InputAdd();
 }
 
 //여기서 부터 기능을 구현한다.
