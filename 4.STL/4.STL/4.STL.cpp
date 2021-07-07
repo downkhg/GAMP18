@@ -6,7 +6,7 @@
 #include <queue> //뒤에서 넣고 앞에서 뺀다.
 #include <stack> //뒤에서 넣고, 뒤어서 뺀다.
 
-#include <set> //집합
+#include <set> //집합(레드블랙이진트리)
 #include <map> //맵
 #include <unordered_map> //해쉬테이블
 
@@ -30,10 +30,10 @@ void main()
 	//ListMain();
 	//DequeMain();
 	//QueueMain();
-	//StackMain();
+	StackMain();
 	//SetMain();
 	//MapMain();
-	PriorityQueueMain();
+	//PriorityQueueMain();
 }
 
 void VectorMain()
@@ -304,9 +304,20 @@ void QueueMain()
 		if (que.empty()) break;
 	}
 }
-void StcakMain()
+void StackMain()
 {
+	stack<int> datastruct;
 
+	datastruct.push(10);
+	datastruct.push(20);
+	datastruct.push(30);
+
+	while (true)
+	{
+		cout << "front:" << datastruct.top() << endl;
+		datastruct.pop();
+		if (datastruct.empty()) break;
+	}
 }
 void SetMain()
 {
