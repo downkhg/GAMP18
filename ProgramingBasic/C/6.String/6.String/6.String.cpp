@@ -6,13 +6,13 @@ void StringMain()
 	const int  nSize = 12;
 	int i = 0;
 	//char str[4] = "abc";//다음과같이 초기화하면 문자열끝이 자동으로 들어간다.
-	char str[nSize] = "apple";//초기화때 지정되면 크기를 비울수있다. // a/p/p/l/e/\0
+	char str[nSize];// = "apple";//초기화때 지정되면 크기를 비울수있다. // a/p/p/l/e/\0
 																	 // 0/1/2/3/4/5
-	/*str[0] = 'a';
+	str[0] = 'a';
 	str[1] = 'b';
-	str[2] = 'c';*/
-	//str[3] = '\0';//널문자: 문자열끝을 알림.
-	strcpy(str, "d");
+	str[2] = 'c';
+	str[3] = '\0';//널문자: 문자열끝을 알림.
+	//strcpy(str, "d");
 	for (int i = 0; i < nSize; i++) printf("%c", str[i]); printf("\n");
 	while (str[i] != 0)//'\0' == 0
 	{
@@ -52,8 +52,9 @@ void StringLibraryMain()
 	printf("en: %s\n", strFullName);
 	//kr: strFullName = strLastName + strFirstName; 
 
-	strcpy(strFullName, strLastName);
-	strcat(strFullName, strFirstName);
+	//strcpy(strFullName, strLastName);
+	//strcat(strFullName, strFirstName);
+	sprintf(strFullName, "%s%s", strLastName, strFirstName);
 
 	printf("kr: %s\n", strFullName);
 
@@ -128,7 +129,7 @@ void HangManGameMain()//이코드에서 문제점을 찾아서 고쳐보자.
 
 void main()
 {
-	//StringMain();
+	StringMain();
 	//StringLibraryMain();
-	HangManGameMain();
+	//HangManGameMain();
 }

@@ -14,6 +14,9 @@ void LinkedListSampleTestMain()
 	cLinkedList.CreateNode(40);
 	cLinkedList.CreateNode(50);
 
+	printf("Begin:%d\n",cLinkedList.GetBegin()->nData);
+	printf("End:%d\n",cLinkedList.GetEnd()->nData);
+
 	cLinkedList.PrintLinkedList();
 
 	CLinkecList<int>::SNode* pFind = cLinkedList.FindNodeData(60);
