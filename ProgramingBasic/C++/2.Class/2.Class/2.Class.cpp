@@ -35,6 +35,12 @@ public:
 	{
 		cout << "~Car[" << this << "]:" << m_strColor << endl;
 	}
+	//복사생성자: 객체가 복사될때 호출되는 함수
+	CCar(CCar& car)
+	{
+		cout << "Copy Car[" << this << "]" << endl;
+		*this = car;
+	}
 
 	enum E_GEAR { P= -4, N = -2, R = -1, D = 0 };
 
@@ -115,8 +121,42 @@ void ClassTestMain()
 	cout << "Class Pointer 2" << endl;
 }
 
+void SwapCarVal(CCar carA, CCar carB)
+{
+	cout << "SwapCarVal:" << &carA << "," << &carB << endl;
+	CCar temp = carA;
+	carA = carB;
+	carB = temp;
+}
+
+void SwapCarRef(CCar& carA, CCar& carB)
+{
+	cout << "SwapCarRef:" << &carA << "," << &carB << endl;
+	CCar temp = carA;
+	carA = carB;
+	carB = temp;
+}
+
+void SwapCarMain()
+{
+	CCar cCarA("red");
+	CCar cCarB("bule");
+	cCarA.Display();
+	cCarB.Display();
+	cout << "##################" << endl;
+	SwapCarVal(cCarA, cCarB);
+	cCarA.Display();
+	cCarB.Display();
+	cout << "##################" << endl;
+	SwapCarRef(cCarA, cCarB);
+	cCarA.Display();
+	cCarB.Display();
+}
+
+
 void main()
 {
 	//CarMain();
-	ClassTestMain();
+	//ClassTestMain();
+	SwapCarMain();
 }
