@@ -62,9 +62,15 @@ public:
 	{
 		m_bEngineOn = false;
 	}
+	//setter: private멤버에 설정하는 함수.
 	void SetColor(string color)
 	{
 		m_strColor = color;
+	}
+	//setter: private멤버에 접근하는 함수
+	string GetColor()
+	{
+		return m_strColor;
 	}
 	void SetGear(E_GEAR gear)
 	{
@@ -101,7 +107,7 @@ void CarMain()
 	cCar.Display();
 	cCar.TurnOff(); //시동을끈다.
 	cCar.Display();
-
+	cout << "ColorCheck:"<< cCar.GetColor() << endl;
 	cout << "CarMain End" << endl;
 }
 //※C#/Java의 클래스는 반드시 동적할당된다.

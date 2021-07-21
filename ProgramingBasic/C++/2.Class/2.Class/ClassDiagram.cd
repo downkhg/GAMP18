@@ -13,8 +13,15 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAAAAEEEAAAAAAAIAAAQAgAAACAIAA=</HashCode>
+      <HashCode>ABAAAAAAAAAAAAAAAEEEEQAAAAAAIACAQAgAAACAIEA=</HashCode>
       <FileName>2.Class.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTV">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAARAA=</HashCode>
+      <FileName>TV.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="맑은 고딕" Size="9" />
