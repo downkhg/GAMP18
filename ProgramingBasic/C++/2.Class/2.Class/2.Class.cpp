@@ -11,15 +11,23 @@ class CCar
 	bool m_bEngineOn = false;
 	string m_strColor = "gray";
 	int m_nGear = N;
+	//const int MAX_SPEED = 300;//상수이므로 여기에서 초기화한다. 
 public:
+
+	static int m_nCount;//정적맴버변수의 선언 //실제로 생성된것이 아니다.
+	//정적맴버함수는 일반맴버함수에 접근할수없다.
+	//정적맴버함수는  객체생성전에도 접근가능해야하므로, 일반맴버는 생성하지않은 상태에서도 호출이 가능해야한다.
+	static int GetCount() { /*m_nSpeed = 0;*/ return m_nCount; }
+
 	//생성자: 클래스가 객체가 생성될때 호출되는 (함수).
 	//객체(인스턴스): 클래스의 실체가되는 메모리
 	//디폴트매개변수: 매개변수의 값을 지정하지않으면, 기본으로 들어가는 변수값.
 	//생성자가 private이면 객체생성이 불가능하다.? -> 싱글톤
-	CCar(string color = "gray")
+	CCar(string color = "gray")//:MAX_SPEED(300)//예전 컴파일러는 위방법이 안되서 사용한 방법이다. 굳이 쓸필요없음.
 	{
-		cout << "Car[" << this << "]:" << color << endl;
-		m_strColor = color;
+		m_nCount++;
+		cout << "Car[" << this << "/" << m_nCount << "]:" << color << endl;
+		m_strColor = color;	
 	}
 	////함수의오버로딩
 	//CCar(string color, bool engineon, int speed, int gear)//다음과 같이 차의정보를 설정 할 수 없다.
@@ -35,7 +43,8 @@ public:
 	//소멸자: 클래스의 객체가 소멸될때 호출되는 함수. 소멸자없음.
 	~CCar()
 	{
-		cout << "~Car[" << this << "]:" << m_strColor << endl;
+		m_nCount--;
+		cout << "~Car[" << this << "/"<<m_nCount<<"]:" << m_strColor << endl;
 	}
 	//복사생성자: 객체가 복사될때 호출되는 함수
 	CCar(CCar& car)
@@ -76,14 +85,19 @@ public:
 	{
 		m_nGear = gear;
 	}
-	void Display()
+	void Display() const
 	{
+		//m_strColor = ""; //멤버의 변수값을 변경할수없음.
 		cout << "####" << m_strColor << "####" << endl;
 		cout << "Speed:" << m_nSpeed << endl;
 		cout << "Gear:" << m_nGear << endl;
 		cout << "Engine:" << m_bEngineOn << endl;
 	}
 };
+//정적맴버변수처럼 작동하는 변수는 전역변수이므로 전역변수처럼 할당해야만 사용가능하다.
+//※정적맴버변수: 객체가 생성전에도 접근가능한 멤버변수
+int CCar::m_nCount = 0;//정적맴버변수의 정의 //실제로 메모리를 할당함.
+
 //자동차를 생선할때 색상을 정하고 주문한다.
 //주문된 자동차를 타고 시운전을 하고 주차한다.
 void CarMain()
@@ -114,6 +128,7 @@ void CarMain()
 //※C#에서 구조체를 활용하면 정적할당된다.
 void ClassTestMain()
 {
+	cout <<"CarCount:" << CCar::m_nCount << endl; //객체가 생성되지않아도 접근가능하다.
 	CCar cCarA;
 	CCar cCarB("red");
 	CCar arrCar[3];// = { CCar("red"),  CCar("green"), CCar("blue") };
@@ -127,6 +142,8 @@ void ClassTestMain()
 	delete pCar;
 	cout << "Class Pointer DynmicAlloc 2" << endl;
 	cout << "Class Pointer 2" << endl;
+	const CCar cCar;
+	//cCar.SetGear(0); //멤버변수를 변경하는 것이 금지된다.
 }
 
 void SwapCarVal(CCar carA, CCar carB)
@@ -165,7 +182,7 @@ void SwapCarMain()
 void main()
 {
 	//CarMain();
-	//ClassTestMain();
+	ClassTestMain();
 	//SwapCarMain();
-	TVSimulatorMain();
+	//TVSimulatorMain();
 }

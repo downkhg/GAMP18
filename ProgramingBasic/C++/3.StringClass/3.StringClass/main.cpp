@@ -37,6 +37,11 @@ namespace Mockup
 		string(string& str)
 		{
 			pStr = str.pStr;
+			int nSize = strlen(str.pStr) + 1;
+			//*pStr = *str.pStr; //할당되지않은 영역에 첫문자열만 복사함.
+			pStr = new char[nSize + 1];
+			//strcpy(pStr, str.pStr);
+			memcpy((void*)pStr, (void*)str.pStr, nSize);
 			cout << "FakeString Copy[" << this << "]:" << (int)pStr << endl;
 		}
 		//생성자에서 동적할당하였으므로 반드시 소멸자에서 동적할당된 객체를 정리한다.
@@ -57,13 +62,13 @@ void MockupStringMain()
 	cout << "##### FakeStringMain Start ######" << endl;
 	Mockup::string strMsg("Test"); //생성자
 	Mockup::string strMsg2("DataTest"); //생성자
-	Mockup::string srtCopyMsg = strMsg; //복사생성자
+	Mockup::string strCopyMsg = strMsg; //복사생성자
 
-	cout << strMsg.c_str() << endl; //const char*를 리턴하는 함수
+	cout << (int)strMsg.c_str() <<strMsg.c_str() << endl; //const char*를 리턴하는 함수
 	printf("%d:%s\n", strMsg.c_str(), strMsg.c_str());
-	cout << strMsg2.c_str() << endl;
+	cout << (int)strMsg2.c_str() <<strMsg2.c_str() << endl;
 	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str());
-	cout << srtCopyMsg.c_str() << endl;
+	cout << (int)strCopyMsg.c_str() <<  strCopyMsg.c_str() << endl;
 	cout << "##### FakeStringMain End######" << endl;
 }
 
