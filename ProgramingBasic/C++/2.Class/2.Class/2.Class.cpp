@@ -182,7 +182,8 @@ void SwapCarMain()
 void main()
 {
 	//CarMain();
-	ClassTestMain();
+	//ClassTestMain();
 	//SwapCarMain();
 	//TVSimulatorMain();
+	TVShopClassSimulatorMain();
 }

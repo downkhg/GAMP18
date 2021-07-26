@@ -13,7 +13,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAAAEEEEQAAAAAAIACAQAgAAACAIEA=</HashCode>
+      <HashCode>ABQAAAAAAAAAAAAAAEUEEQAAAAAAIACAQAgAAACAIEA=</HashCode>
       <FileName>2.Class.cpp</FileName>
     </TypeIdentifier>
   </Class>
@@ -21,6 +21,20 @@
     <Position X="3.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAARAA=</HashCode>
+      <FileName>TV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CShopHouse">
+    <Position X="7.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAIgAAAAAAAAQAAAAAAAgEA=</HashCode>
+      <FileName>TV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CShop">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBAgAAAAAAAQAAAAAAAAAAAAABAAAgAAAAAAgAAAg=</HashCode>
       <FileName>TV.h</FileName>
     </TypeIdentifier>
   </Class>
