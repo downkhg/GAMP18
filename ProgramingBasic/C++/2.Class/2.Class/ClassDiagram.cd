@@ -24,17 +24,17 @@
       <FileName>TV.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CShopHouse">
+  <Class Name="CShopHouseRef">
     <Position X="7.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAIgAAAAAAAAQAAAAAAAgEA=</HashCode>
+      <HashCode>AAEAAAAAAAAABAAAAAAAAAIgAABAAAAAYAAAAAAAAAA=</HashCode>
       <FileName>TV.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CShop">
+  <Class Name="CShopRef">
     <Position X="5.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgBAgAAAAAAAQAAAAAAAAAAAAABAAAgAAAAAAgAAAg=</HashCode>
+      <HashCode>AAgRIAAAAAAAAQAAAAAAAAAAAAAAAAAgAAAAAAgAAAg=</HashCode>
       <FileName>TV.h</FileName>
     </TypeIdentifier>
   </Class>

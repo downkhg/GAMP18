@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <stack>
+#include <list>
 
 using namespace std;
 
@@ -21,13 +22,27 @@ class CShopHouse
 public:
 	CShopHouse()
 	{
-		cout << "CShopHouse() 1" << endl;
+		cout << "CShopHouse()" << endl;
 		listShopHouse["TvA"] = new stack<CTV*>();
 		listShopHouse["TvB"] = new stack<CTV*>();
 		listShopHouse["TvC"] = new stack<CTV*>();
-		cout << "CShopHouse() 2" << endl;
 	}
 	~CShopHouse()
+	{
+		cout << "~CShopHouse()" << endl;
+	}
+	void Order(int count)
+	{
+		cout << "Order("<<count<<") 1" << endl;
+		for (int i = 0; i < count; i++)
+		{
+			listShopHouse["TvA"]->push(new CTV("TvA"));
+			listShopHouse["TvB"]->push(new CTV("TvB"));
+			listShopHouse["TvC"]->push(new CTV("TvC"));
+		}
+		cout << "Order(" << listShopHouse["TvA"]->size()<< ") 2" << endl;
+	}
+	void Disposal()
 	{
 		//창고상품 폐기
 		map<string, stack<CTV*>*>::iterator itShopHouse;
@@ -41,17 +56,6 @@ public:
 			}
 			delete stack;
 		}
-	}
-	void Order(int count)
-	{
-		cout << "Order("<<count<<") 1" << endl;
-		for (int i = 0; i < count; i++)
-		{
-			listShopHouse["TvA"]->push(new CTV("TvA"));
-			listShopHouse["TvB"]->push(new CTV("TvB"));
-			listShopHouse["TvC"]->push(new CTV("TvC"));
-		}
-		cout << "Order(" << listShopHouse["TvA"]->size()<< ") 2" << endl;
 	}
 	CTV* GetTVBox(CTV* pSelTV)
 	{
@@ -69,7 +73,7 @@ public:
 	{
 		CTV* pTemp = NULL;
 		stack<CTV*>* stackShopHouse = listShopHouse[name];
-		if (stackShopHouse == NULL)
+		if (stackShopHouse)
 		{
 			pTemp = stackShopHouse->top();
 			listShopHouse[name]->pop();
@@ -81,6 +85,134 @@ public:
 	void SetTVBox(CTV* pTV)
 	{
 		listShopHouse[pTV->GetName()]->push(pTV);
+	}
+	void Display()
+	{
+
+	}
+};
+
+class CShopHouseRef
+{
+	map<string, stack<CTV*>*>* listShopHouse; //창고
+public:
+	CShopHouseRef(map<string, stack<CTV*>*>* mapTVStacks)
+	{
+		cout << "CShopHouse()" << endl;
+		listShopHouse = mapTVStacks;
+	}
+	~CShopHouseRef()
+	{
+		cout << "~CShopHouse()" << endl;
+	}
+	void Order(int count)
+	{
+		cout << "Order(" << count << ") 1" << endl;
+		for (int i = 0; i < count; i++)
+		{
+			((*listShopHouse)["TvA"])->push(new CTV("TvA"));
+			((*listShopHouse)["TvB"])->push(new CTV("TvB"));
+			((*listShopHouse)["TvC"])->push(new CTV("TvC"));
+		}
+		cout << "Order(" << ((*listShopHouse)["TvA"])->size() << ") 2" << endl;
+	}
+	void Disposal()
+	{
+		//창고상품 폐기
+		map<string, stack<CTV*>*>::iterator itShopHouse;
+		for (itShopHouse = listShopHouse->begin(); itShopHouse != listShopHouse->end(); itShopHouse++)
+		{
+			stack<CTV*>* stack = itShopHouse->second;
+			while (!stack->empty())
+			{
+				CTV* pDelTv = stack->top();
+				stack->pop();
+			}
+			delete stack;
+		}
+	}
+	CTV* GetTVBox(CTV* pSelTV)
+	{
+		CTV* pTemp = NULL;
+		if (pSelTV)
+		{
+			pTemp = ((*listShopHouse)[pSelTV->GetName()])->top();
+			(*listShopHouse)[pSelTV->GetName()]->pop();
+			if (pTemp) cout << "Shop:" << pTemp->GetName() << endl;
+			else cout << pSelTV->GetName() << " is empty!" << endl;
+		}
+		return pTemp;
+	}
+	CTV* GetTVBox(string name)
+	{
+		CTV* pTemp = NULL;
+
+		stack<CTV*>* stackShopHouse = (*listShopHouse)[name];
+		if (stackShopHouse)
+		{
+			pTemp = stackShopHouse->top();
+			(*listShopHouse)[name]->pop();
+			if (pTemp) cout << "Shop:" << pTemp->GetName() << endl;
+			else cout << name << " is empty!" << endl;
+		}
+		return pTemp;
+	}
+	void SetTVBox(CTV* pTV)
+	{
+		(*listShopHouse)[pTV->GetName()]->push(pTV);
+	}
+};
+
+class CShopRef
+{
+	map<string, CTV*> listShop; //전시상품
+	CShopHouseRef* m_pShopHouse; //Has-a: 객체를 객체내부에 가지고있는것.
+
+	CTV* _getHouse(string name)
+	{
+		return m_pShopHouse->GetTVBox(name);
+	}
+	void _setDisplay(string name)
+	{
+		listShop[name] = _getHouse(name);
+	}
+public:
+	CShopRef(CShopHouseRef* pShopHouse )
+	{
+		m_pShopHouse = pShopHouse;
+		
+	}
+	~CShopRef()
+	{
+		//전시된 tv를 창고에 집어넣는다.
+		map<string, CTV*>::iterator it = listShop.begin();
+		for (; it != listShop.end(); it++)
+		{
+			m_pShopHouse->SetTVBox(it->second);
+		}
+	}
+
+	void DispalyTV()
+	{
+		//창고에 각 물건 1개씩 꺼내와서 전시한다.
+		listShop["TvA"] = _getHouse("TvA");
+		_setDisplay("TvB");
+		listShop["TvC"] = m_pShopHouse->GetTVBox("TvC");
+	}
+
+	CTV* SelectTV(CTV* pTV)
+	{
+		return m_pShopHouse->GetTVBox(pTV);
+	}
+
+	CTV* SelectTV(string name)
+	{
+		return m_pShopHouse->GetTVBox(name);
+	}
+
+	void Delivery(CTV*& address, CTV* cTv)
+	{
+		address = cTv;
 	}
 };
 
@@ -214,6 +346,21 @@ void TVSimulatorMain()
 	}
 }
 
+void TVShopTestMain()
+{
+	CShopHouse m_cShopHouse;
+
+	m_cShopHouse.Order(4);
+
+	CTV* pTV = m_cShopHouse.GetTVBox("TvA");
+	
+	if (pTV)
+		pTV->Display();
+	else
+		printf("TvA is null");
+}
+
+
 void TVShopClassSimulatorMain()
 {
 	CShop m_cShop;
@@ -227,4 +374,22 @@ void TVShopClassSimulatorMain()
 		pTVshelf->Display();
 	else
 		printf("TVShelf is Emplty!!!");
+}
+
+void TVShopClassSimulatorRefMain()
+{
+	//TV창고에 쌓을 물건을 스택에 적제한다.
+	map<string, stack<CTV*>*> mapTVStacks;
+	mapTVStacks["TvA"] = new stack<CTV*>();
+	mapTVStacks["TvB"] = new stack<CTV*>();
+	mapTVStacks["TvC"] = new stack<CTV*>();
+
+	mapTVStacks["TvA"]->push(new CTV("TvA"));
+	mapTVStacks["TvB"]->push(new CTV("TvB"));
+	mapTVStacks["TvC"]->push(new CTV("TvC"));
+	//적제한 스택을 창고안에 넣는다.
+	CShopHouseRef cShopHouse(&mapTVStacks);
+
+	CShopRef cShop(&cShopHouse);
+
 }
