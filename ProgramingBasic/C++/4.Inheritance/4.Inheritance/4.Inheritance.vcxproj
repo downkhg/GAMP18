@@ -142,10 +142,13 @@
     <ClCompile Include="4.Inheritance.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Car.h" />
+    <ClInclude Include="CarHirachyIneritance.h" />
+    <ClInclude Include="CarIneritance.h" />
     <ClInclude Include="Shape.h" />
+    <ClInclude Include="Car.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram_Car.cd" />
     <None Include="ClassDiagram_Shape.cd" />
   </ItemGroup>

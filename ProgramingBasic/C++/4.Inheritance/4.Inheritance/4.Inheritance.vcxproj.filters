@@ -20,10 +20,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Car.h">
+    <ClInclude Include="CarIneritance.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Car.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CarHirachyIneritance.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,6 +38,9 @@
       <Filter>리소스 파일</Filter>
     </None>
     <None Include="ClassDiagram_Shape.cd">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="ClassDiagram.cd">
       <Filter>리소스 파일</Filter>
     </None>
   </ItemGroup>

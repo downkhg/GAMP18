@@ -7,10 +7,15 @@
 #include <iostream>
 #include "Shape.h"
 #include "Car.h"
+#include "CarIneritance.h"
+#include "CarHirachyIneritance.h"
 using namespace std;
 
 void main()
 {
 	//ShapeMain();
-	CarMain();
+	//CarMain();
+	//cout << "######## Inhertance ########" << endl;
+	//Inheritance::CarMain();
+	HirachyInheritance::CarMain();
 }
