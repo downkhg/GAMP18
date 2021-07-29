@@ -32,6 +32,15 @@
     <ClInclude Include="CarHirachyIneritance.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CarDiamondInheritance.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Radio.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PolymrphismShape.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram_Car.cd">
@@ -41,6 +50,9 @@
       <Filter>리소스 파일</Filter>
     </None>
     <None Include="ClassDiagram.cd">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="ClassDiagram_Radio.cd">
       <Filter>리소스 파일</Filter>
     </None>
   </ItemGroup>

@@ -9,6 +9,7 @@
 #include "Car.h"
 #include "CarIneritance.h"
 #include "CarHirachyIneritance.h"
+#include "CarDiamondInheritance.h"
 using namespace std;
 
 void main()
@@ -17,5 +18,7 @@ void main()
 	//CarMain();
 	//cout << "######## Inhertance ########" << endl;
 	//Inheritance::CarMain();
-	HirachyInheritance::CarMain();
+	//HirachyInheritance::CarMain();
+	//DiamondInheritance::CarMain();
+	Inheritance::ShapeMain();
 }

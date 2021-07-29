@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Spiker">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAABAAAAAAAAAAAAAAQAEAAAAAAAIAABAAA=</HashCode>
+      <FileName>Radio.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antena">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAACAAA=</HashCode>
+      <FileName>Radio.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RadioIsA">
+    <Position X="2.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Radio.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RadioHasA">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAAAAABAAAAAAAAAAAAAAQAEAAAAAgEAAADAAA=</HashCode>
+      <FileName>Radio.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
