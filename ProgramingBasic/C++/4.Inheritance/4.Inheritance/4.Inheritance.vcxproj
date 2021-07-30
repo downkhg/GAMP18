@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="4.Inheritance.cpp" />
+    <ClCompile Include="4.Inheritance,Polymrphism.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PolymrphismShape.h" />

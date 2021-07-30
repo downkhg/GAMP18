@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <list>
 using namespace std;
 //도형과 같이 공통적인 특징이 속성이 없고 동작만 존재하는 클래스를 굳이 상속관계로 만들필요가 없다.
 //다형성을 이용하여 부모의 포인터에서도 자식의 객체에 접근을 하기위해서 상속을 이용한다.
@@ -38,11 +39,11 @@ namespace Polymrphism
 		{
 			cout << "~Shape[" << this << "]" << endl;
 		}
-		void Draw()
+		//void Draw()
 		//오버로딩: 함수의 매개변수의 갯수나 타입이 다른 함수를 같은이름으로 정의하는것.
 		//오버라이딩: 가상함수를 만들어 부모의포인터에서 자식객체의 함수를 호출하는것.
 		//virtual void Draw() //가상함수: 부모의 포인터에서 자식의 함수에 접근하기위해서 사용한다.
-		//virtual void Draw() = 0 //순수가상함수: 이 함수를 자식에서 정의하지않으면 컴파일오류가 발생한다.
+		virtual void Draw() = 0 //순수가상함수: 이 함수를 자식에서 정의하지않으면 컴파일오류가 발생한다.
 		{
 			cout << "Shape[" << this << "]::Draw()" << endl;
 		};
@@ -65,7 +66,7 @@ namespace Polymrphism
 		{
 			cout << "~Circle[" << this << "]()" << endl;
 		}
-		void Draw()
+		void Draw() override
 		{
 			cout << "Circle[" << this << "]::Draw()" << endl;
 			vPos.Print("Pos");
@@ -80,7 +81,7 @@ namespace Polymrphism
 	public:
 		TriAngle(Vector a = Vector(), Vector b = Vector(), Vector c = Vector()) { cout << "TriAngle[" << this << "]" << endl; };
 		//~TriAngle() { cout << "~TriAngle[" << this << "]" << endl; };
-		void Draw()
+		void Draw() override
 		{
 			cout << "TriAngle[" << this << "]::Draw()" << endl;
 			vA.Print("A:");
@@ -107,14 +108,14 @@ namespace Polymrphism
 		{
 			cout << "~RectAangle[" << this << "]()" << endl;
 		}
-		/*void Draw()
+		void Draw() override
 		{
 			cout << "RectAangle[" << this << "]::Draw()" << endl;
 			vTL.Print("TopLeft:");
 			vTR.Print("TopRight:");
 			vBL.Print("BottomLeft:");
 			vBR.Print("BottomRight:");
-		}*/
+		}
 	};
 
 	//부모의 부분과 자식의 부분은 메모리가 다르다. 
@@ -127,8 +128,14 @@ namespace Polymrphism
 		Circle cCrilce({ 1,1 }, 1);
 		//cShape.Draw();
 		//cShape.Shape::Draw();
+		cout << "############## DrawShape #################" << endl;
 		cCrilce.Draw();
 		cCrilce.Shape::Draw();
+		Shape* pShape = &cCrilce;//upcast
+		//Circle* pCircle = (Circle*)&cShape;//downcast
+		cout << "############## DrawShapePtr #################" << endl;
+		pShape->Draw();
+		//pCircle->Draw();
 	}
 	//프로그램 실행중에 선택하여 모양을 여러개를 그리려면 어떻게해야하는가?//동적으로 메모리를 할당받아야한다.
 	void RuntimeShapeDrawMain()
@@ -139,12 +146,13 @@ namespace Polymrphism
 		arrShape[0] = (void*)new Circle();
 		arrShape[1] = (void*)new RectAangle();
 		arrShape[2] = (void*)new TriAngle();
-
-		//for (int i = 0; i < 3; i++)
-		//	(Shape*)arrShape[i]->Draw();
+		cout << "############## DrawShapeFor #################" << endl;
+		for (int i = 0; i < 3; i++)
+			((Shape*)arrShape[i])->Draw();
+		cout << "############## DrawShape #################" << endl;
 		((Circle*)arrShape[0])->Draw();
-		((RectAangle*)(arrShape[0]))->Draw();
-		((TriAngle*)(arrShape[0]))->Draw();
+		((RectAangle*)(arrShape[1]))->Draw();
+		((TriAngle*)(arrShape[2]))->Draw();
 	}
 	void PolymrphismMain()
 	{
@@ -167,6 +175,20 @@ namespace Polymrphism
 
 		for (int i = 0; i < 3; i++)
 			delete(arrShape[i]);
+	}
+	void PolymrphismShapeManagementDrawMain()
+	{
+		list<Shape*> listShape;
+		//동적바인딩
+		listShape.push_back(new Circle());
+		listShape.push_back(new RectAangle());
+		listShape.push_back(new TriAngle());
+		list<Shape*>::iterator it;
+		for (it = listShape.begin(); it != listShape.end(); it++)
+			(*it)->Draw();
+
+		for (it = listShape.begin(); it != listShape.end(); it++)
+			delete(*it);
 	}
 
 	void ShapeDraw(Shape* shape)

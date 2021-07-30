@@ -10,6 +10,7 @@
 #include "CarIneritance.h"
 #include "CarHirachyIneritance.h"
 #include "CarDiamondInheritance.h"
+#include "PolymrphismShape.h"
 using namespace std;
 
 void main()
@@ -20,5 +21,9 @@ void main()
 	//Inheritance::CarMain();
 	//HirachyInheritance::CarMain();
 	//DiamondInheritance::CarMain();
-	Inheritance::ShapeMain();
+	//Inheritance::ShapeMain();
+	//Polymrphism::ShapeMain();
+	//Polymrphism::RuntimeShapeDrawMain();
+	//Polymrphism::PolymrphismShapeManagementDrawMain();
+	Polymrphism::FuncPointerMain();
 }

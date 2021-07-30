@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="4.Inheritance.cpp">
+    <ClCompile Include="4.Inheritance,Polymrphism.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
