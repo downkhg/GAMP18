@@ -10,33 +10,60 @@ class Vector
 	float x;
 	float y;
 public:
+	//연산자오버로딩시 리턴값은 계산될 결과다.
 	Vector(float x = 0, float y = 0)
 	{
-		
+		this->x = x;
+		this->y = y;
 	}
 	Vector operator+(Vector vDist)
 	{
-		
+		return Vector(x + vDist.x, y + vDist.y);
 	}
 	Vector operator-(Vector vPos)
 	{
-		
+		return Vector(x - vPos.x, y - vPos.y);
 	}
 	Vector operator*(float fDist)
 	{
-		
+		return Vector(x * fDist, y * fDist);
+	}
+	//연산자오버로딩시 객체서로 다른 값을 계산할때, friend함수를 사용해야한다.
+	friend Vector operator*(float dist, Vector vec)
+	{
+		return Vector(vec.x * dist, vec.y * dist);
 	}
 	float Scalar()
 	{
-		
+		return sqrt(x * x + y * y);
 	}
 	Vector Normalize()
 	{
-		
+		float fDist = Scalar();
+		return Vector(x/fDist, y/fDist);
 	}
 	void Display(const char* msg)
 	{
 		cout << msg << "(" << x << "," << y << ")" << endl;
+	}
+	float operator[](int idx)
+	{
+		if (idx == 0)
+			return x;
+		else
+			return y;
+	}
+	bool operator==(Vector vec)
+	{
+		return (x == vec.x && y == vec.y) ? true: false;
+	}
+	bool operator!=(Vector vec)
+	{
+		return !(*this == vec);
+	}
+	friend ostream& operator<<(ostream& os, Vector vec)
+	{
+		return os << vec.x << "," << vec.y ;
 	}
 };
 
@@ -58,7 +85,15 @@ void VectorMian()
 	cout << "Dist:" << fDist << endl;
 	vDir.Display("Dir");
 
+	vDist = vDir * fDist;
+	vDist = fDist * vDir;
+
 	vDist.Display("Dist");
+
+	cout << vDist[0] << "," << vDist[1] << endl;
+
+	if (vDir == vDist)
+		cout << vDist << "==" << vDir << endl;
 }
 
 void main()
