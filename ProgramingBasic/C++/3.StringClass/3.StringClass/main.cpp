@@ -18,7 +18,7 @@ void STDStringMain()
 	cout << strMsg2.c_str() << endl;
 	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str());
 	strCopyMsg2 = strMsg;
-	cout << (int)strCopyMsg2.c_str() << endl;
+	cout << (int)strCopyMsg2.c_str() << "," << (int)strMsg.c_str() << endl;
 	cout << "##### STDStringMain End######" << endl;
 }
 
@@ -77,7 +77,7 @@ void MockupStringMain()
 	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str());
 	cout << (int)strCopyMsg.c_str() <<  strCopyMsg.c_str() << endl;
 	strCopyMsg2 = strMsg;
-	cout << (int)strCopyMsg2.c_str() << endl;
+	cout << (int)strCopyMsg2.c_str() << ","<< (int)strMsg.c_str() << endl;
 	cout << "##### FakeStringMain End######" << endl;
 }
 
