@@ -50,6 +50,18 @@ namespace Mockup
 			memcpy((void*)pStr, (void*)str.pStr, nSize);
 			cout << "FakeString Copy[" << this << "]:" << (int)pStr << endl;
 		}
+		//복사대입시에도 얕은복사가 발생하므로 다음과 같이 연산자 오버로딩이 필요하다
+		string operator=(string& str)
+		{
+			pStr = str.pStr;
+			int nSize = strlen(str.pStr) + 1;
+			//*pStr = *str.pStr; //할당되지않은 영역에 첫문자열만 복사함.
+			pStr = new char[nSize + 1];
+			//strcpy(pStr, str.pStr);
+			memcpy((void*)pStr, (void*)str.pStr, nSize);
+			cout << "FakeString ==[" << this << "]:" << (int)pStr << endl;
+			return *this;
+		}
 		//생성자에서 동적할당하였으므로 반드시 소멸자에서 동적할당된 객체를 정리한다.
 		~string()
 		{
