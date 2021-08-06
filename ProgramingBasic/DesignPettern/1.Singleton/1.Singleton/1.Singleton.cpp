@@ -7,8 +7,9 @@ class SingleObject
 	static SingleObject* m_pInstance;
 	int m_nData = 10;
 
-	SingleObject(){  }
+	SingleObject() { cout << "SingleObject:"<<this<< endl; }
 public:
+
 	static SingleObject* GetInstance()
 	{
 		if (m_pInstance == NULL)
@@ -19,9 +20,14 @@ public:
 	{
 		cout << "SingleObject["<<this<<"]:" << m_nData << endl;
 	}
-	void Release()
+	static void Release()
 	{
-		delete m_pInstance;
+		cout << "SingleObject::Relase()" << endl;
+		if (m_pInstance)
+		{
+			delete m_pInstance;
+			m_pInstance = NULL;
+		}
 	}
 };
 
@@ -46,4 +52,9 @@ void main()
 	{
 		pArrObject[i]->ShowMassage();
 	}
+	for (int i = 0; i < 2; i++)
+		pArrObject[i]->Release();
+
+	pObjectA->Release();//이러한 인터페이스는 사용자에게 혼란을 줄수있음.
+	SingleObject::Release();
 }
