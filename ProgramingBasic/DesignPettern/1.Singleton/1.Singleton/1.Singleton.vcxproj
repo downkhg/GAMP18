@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{074d18a8-65da-4ed3-bf9b-9f8284af8094}</ProjectGuid>
-    <RootNamespace>My6etc</RootNamespace>
+    <ProjectGuid>{69906693-c0fb-46d8-981f-f0ba7ab754ff}</ProjectGuid>
+    <RootNamespace>My1Singleton</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,10 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="6.etc.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Templete.h" />
+    <ClCompile Include="1.Singleton.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

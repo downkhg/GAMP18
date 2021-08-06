@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Templete.h"
 using namespace std;
 //피자조각수와 사람수를 입력받아 
 //한사람이 몇 조각을 먹을수있는지
@@ -103,10 +104,13 @@ void StaticCastMain()
 	cout << "DataStaticCast:" << nDataStaticCast << endl;
 }
 //동적할당변수/객체
+//동적할당된 객체를 캐스팅시 문제가 되면 컴파일오류를 발생시킨다.
 void DynamicCastMain()
 {
 	int* pIntData = new int();
+	*pIntData = 1000;
 	float* pfloatDataCast = (float*)pIntData;
+	cout << *pfloatDataCast << endl;
 	//일반멤버의 변수에는 사용할수없음.
 	//float* pfloatDataDynamicCast = dynamic_cast<float*>(pIntData);
 	delete pIntData;
@@ -130,7 +134,9 @@ void main()
 {
 	//PizzaSiliceMain();
 	//PolymorphismExceptionMain();
-	TypeIdMain();
+	//TypeIdMain();
 	//StaticCastMain();
 	//DynamicCastMain();
+	StackMain();
+	Mokeup::StackMain();
 }
