@@ -6,7 +6,7 @@ class Unit; //클래스의 선언
 
 using namespace std;
 
-
+//추상클래스
 class Unit //클래스의 정의
 {
 	int x;

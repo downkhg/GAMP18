@@ -15,21 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Observer.cpp">
+    <ClCompile Include="4.State.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Commender.cpp">
+    <ClCompile Include="State.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Commender.h">
+    <ClInclude Include="State.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd">
-      <Filter>리소스 파일</Filter>
-    </None>
   </ItemGroup>
 </Project>

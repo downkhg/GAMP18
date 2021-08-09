@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Unit">
+    <Position X="6.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Commender.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Marin">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAAAAEAAAgAAA=</HashCode>
+      <FileName>Commender.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medic">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAYAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Commender.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Commonder">
+    <Position X="10" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAABAAAAAAAAAIAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commender.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
