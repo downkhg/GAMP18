@@ -140,7 +140,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Commender.cpp" />
     <ClCompile Include="Observer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Commender.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
