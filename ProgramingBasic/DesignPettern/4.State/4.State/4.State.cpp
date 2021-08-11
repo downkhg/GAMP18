@@ -9,4 +9,8 @@ void main()
 
 	cContext.SetState(new StateOne());
 	cContext.GoNext();
+	cContext.GoNext();
+	cContext.GoNext();
+	cContext.GoNext();
+	cContext.GoNext();
 }

@@ -1,4 +1,5 @@
 #pragma once
+#define NULL 0
 
 class State;
 class StateOne;
@@ -10,13 +11,15 @@ class Context;
 class State
 {
 public:
+	virtual ~State() {};
 	virtual void GoNext(Context* pContext) = 0;
 };
 
 class Context
 {
-	State* m_pState;
+	State* m_pState = NULL;
 public:
+	~Context();
 	void SetState(State* pState);
 	void GoNext();
 };
