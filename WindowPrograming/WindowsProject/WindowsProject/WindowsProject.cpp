@@ -127,7 +127,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         {
-            CreateWindow(TEXT("button"), TEXT("Click me!"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 20, 20, 100, 25, hWnd, (HMENU)1, hInst, NULL);
+            CreateWindow(TEXT("button"), TEXT("Click me!"), 
+                WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 
+                20, 20, 100, 25, hWnd, (HMENU)1, hInst, NULL);
         }
         break;
     case WM_COMMAND:
