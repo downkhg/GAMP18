@@ -14,8 +14,6 @@
 
 using namespace std;
 
-queue<int> queMsg;
-
 enum WM_MSG { CREATE, COMMOND, PAINT, DESTROY, MAX };
 string strMSG[MAX] = { "CREATE","COMMOND","PAINT","DESTROY" };
 
@@ -27,12 +25,14 @@ unsigned int WINAPI WndProc(void* arg)
 	cout << "WndProc 1" << endl;
 	cout << "arg:" << arg << endl;
 	
+	queue<int>* pQueue = (queue<int>*)arg;
+
 	while (g_bLoop)
 	{
-		if (!queMsg.empty())
+		if (!pQueue->empty())
 		{
-			int nMsg = queMsg.front();//*(int*)arg;
-			queMsg.pop();
+			int nMsg = pQueue->front();//*(int*)arg;
+			pQueue->pop();
 
 			switch (nMsg)
 			{
@@ -73,6 +73,7 @@ int main()
 	HANDLE hThread = NULL;
 	DWORD dwThreadID = NULL;
 
+	queue<int> queMsg;
 	int nMSG = CREATE;
 	cout << "Msg:" << &nMSG << endl;
 	queMsg.push(nMSG);
@@ -83,7 +84,7 @@ int main()
 	//콜백함수: 프로세스내에서 호출하지않고, 외부에서 호출하도록 하는 함수.
 	hThread = (HANDLE)_beginthreadex(NULL, 0,
 		WndProc,
-		(void*)&nMSG, 0,
+		(void*)&queMsg, 0,
 		(unsigned int*)dwThreadID);
 
 	while (g_bLoop)
