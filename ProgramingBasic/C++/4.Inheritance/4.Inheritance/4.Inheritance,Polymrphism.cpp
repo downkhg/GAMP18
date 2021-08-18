@@ -18,12 +18,12 @@ void main()
 	//ShapeMain();
 	//CarMain();
 	//cout << "######## Inhertance ########" << endl;
-	//Inheritance::CarMain();
+	Inheritance::CarMain();
 	//HirachyInheritance::CarMain();
 	//DiamondInheritance::CarMain();
 	//Inheritance::ShapeMain();
 	//Polymrphism::ShapeMain();
 	//Polymrphism::RuntimeShapeDrawMain();
 	//Polymrphism::PolymrphismShapeManagementDrawMain();
-	Polymrphism::FuncPointerMain();
+	//Polymrphism::FuncPointerMain();
 }

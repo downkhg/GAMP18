@@ -16,10 +16,12 @@ namespace ThreadTaskAsync
 
         public void ThreadCallBack()
         {
+            //Console.WriteLine("ThreadCallBack Start");
             for (int i = 0; i < 9999; i++)
             {
                 //Console.WriteLine(nId+":ThreadCallBack:" + i);
             }
+            //Console.WriteLine("ThreadCallBack End");
         }
     }
 
@@ -70,7 +72,7 @@ namespace ThreadTaskAsync
 
         static void Main(string[] args)
         {
-            //ThreadTestMain();
+            ThreadTestMain();
             TaskTestMain();
         }
     }

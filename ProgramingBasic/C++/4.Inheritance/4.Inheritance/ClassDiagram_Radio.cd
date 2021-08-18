@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="RadioHasA">
-    <Position X="4.5" Y="3.75" Width="1.5" />
+    <Position X="6.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAACAAAAABAAAAAAAAAAAAAAQAEAAAAAgEAAADAAA=</HashCode>
       <FileName>Radio.h</FileName>
