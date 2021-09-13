@@ -10,20 +10,25 @@ public class Matrix : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Matrix4x4 temp = transform.localToWorldMatrix * transform.worldToLocalMatrix;
+        Debug.Log(temp);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 vTargetPos = targetAxis.position;
-        Vector3 vPos = transform.position;
-        //타겟과 현재 오브젝트의 위치를 계산하여 축을 생성
-        m_vAsix = (vTargetPos - vPos).normalized;
+        if(targetAxis)//타겟축이 없다면 설정된 축으로 회전한다.
+        { 
+            Vector3 vTargetPos = targetAxis.position;
+            Vector3 vPos = transform.position;
+            //타겟과 현재 오브젝트의 위치를 계산하여 축을 생성
+        
+            m_vAsix = (vTargetPos - vPos).normalized;
+        }
 
         transform.Rotate(m_vAsix * m_fRatAngle * Time.deltaTime);
 
-        Debug.DrawLine(transform.position, targetAxis.position, Color.red);
+        Debug.DrawLine(transform.position, targetAxis.position, Color.red); 
     }
     public int idx = 0;
     private void OnGUI()
