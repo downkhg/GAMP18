@@ -155,7 +155,7 @@ VOID SetupMatrices()
     g_pd3dDevice->SetTransform(D3DTS_WORLD, &matWorld);	/// 생성한 회전행렬을 월드행렬로 디바이스에 설정
 
     /// 뷰행렬을 정의하기 위해서는 세가지값이 필요하다.    
-    D3DXVECTOR3 vEyePt(0.0f, 3.0f, -5.0f);							/// 1. 눈의 위치( 0, 3.0, -5)
+    D3DXVECTOR3 vEyePt(0.0f, 3.0f, -3.0f);							/// 1. 눈의 위치( 0, 3.0, -5)
     D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);						/// 2. 눈이 바라보는 위치( 0, 0, 0 )
     D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);							/// 3. 천정방향을 나타내는 상방벡터( 0, 1, 0 )
     D3DXMATRIXA16 matView;
