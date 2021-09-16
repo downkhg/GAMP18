@@ -18,6 +18,27 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="define.h" />
+    <ClInclude Include="ZCamera.h" />
+    <ClInclude Include="ZFLog.h" />
+    <ClInclude Include="ZWater.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ZCamera.cpp" />
+    <ClCompile Include="ZFLog.cpp" />
+    <ClCompile Include="ZWater.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="tex.jpg" />
+    <Image Include="tree01S.dds" />
+    <Image Include="tree02S.dds" />
+    <Image Include="tree1.bmp" />
+    <Image Include="tree35S.dds" />
+    <Image Include="water1.bmp" />
+    <Image Include="water2.bmp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -87,7 +108,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -141,15 +162,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="02.6.Meshes.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="tiger.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="tiger.x" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

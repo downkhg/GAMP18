@@ -6,6 +6,7 @@ public class Camera : MonoBehaviour
 {
     public Transform trTarget;
     public Vector3 vAsix = Vector3.right;
+    public float Speed = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class Camera : MonoBehaviour
         Vector3 vDir = vDist.normalized;
         float fDist = vDist.magnitude;
 
-        Quaternion rotateCam = Quaternion.Euler(vAsix * Time.deltaTime);
+        Quaternion rotateCam = Quaternion.Euler(vAsix * Speed * Time.deltaTime);
 
         vDir = rotateCam * vDir;
 
