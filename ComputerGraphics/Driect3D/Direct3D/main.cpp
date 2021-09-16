@@ -15,6 +15,9 @@
 #include "ZFLog.h"
 #include "ZWater.h"
 
+#include <vector>
+using namespace std;
+
 #define WINDOW_W		500
 #define WINDOW_H		500
 #define WINDOW_TITLE	"Billboard"
@@ -119,7 +122,7 @@ HRESULT InitGeometry()
 	D3DXCreateTextureFromFile( g_pd3dDevice, "tree01S.dds", &g_pTexBillboard[0] );
 	D3DXCreateTextureFromFile( g_pd3dDevice, "tree02S.dds", &g_pTexBillboard[1] );
 	D3DXCreateTextureFromFile( g_pd3dDevice, "tree35S.dds", &g_pTexBillboard[2] );
-	D3DXCreateTextureFromFile( g_pd3dDevice, "tex.jpg", &g_pTexBillboard[3] );
+	D3DXCreateTextureFromFile( g_pd3dDevice, "ExplosionEffect.png", &g_pTexBillboard[3] );
 
 
 	// 최초의 마우스 위치 보관
@@ -187,8 +190,8 @@ VOID SetupLights()
  */
 void LogStatus( void )
 {
-	g_pLog->Log( "Wireframe:%d", g_bWireframe );
-	g_pLog->Log( "BillBoard:%d", g_bBillboard );
+	//g_pLog->Log( "Wireframe:%d", g_bWireframe );
+	//g_pLog->Log( "BillBoard:%d", g_bBillboard );
 }
 
 
@@ -206,7 +209,7 @@ void LogFPS(void)
 	{
 		nTick = GetTickCount();
 		/// FPS값 출력
-		g_pLog->Log("FPS:%d", nFPS );
+		//g_pLog->Log("FPS:%d", nFPS );
 
 		nFPS = 0;
 		LogStatus();	/// 상태정보를 여기서 출력(1초에 한번)
@@ -263,7 +266,7 @@ void ProcessKey( void )
  */
 void ProcessInputs( void )
 {
-	ProcessMouse();
+	//ProcessMouse();
 	ProcessKey();
 }
 
@@ -281,6 +284,57 @@ VOID Animate()
 	LogFPS();
 }
 
+struct MYVERTEX
+{
+	enum { FVF = D3DFVF_XYZ | D3DFVF_TEX1 };
+	float px, py, pz;
+	float tu, tv;
+};
+
+struct TexCoords
+{
+	float u;
+	float v;
+	TexCoords(float u = 0, float v = 0)
+	{
+		this->u = u;
+		this->v = v;
+	}
+	void Print()
+	{
+		printf("(%f,%f)\n", this->u, this->v);
+	}
+};
+
+vector<vector<vector<TexCoords>>> arrTextureCoords;
+int nSellWidth = 4;
+int nSellHighit = 4;
+void InitTextureCoords()
+{
+	FILE* pFile = fopen("texCoords.txt", "rt");
+	fscanf(pFile, "%d %d\n", &nSellWidth, &nSellHighit);
+	arrTextureCoords.resize(nSellHighit);
+	for (int y = 0; y < nSellHighit; y++)
+	{
+		arrTextureCoords[y].resize(nSellWidth);
+		for (int x = 0; x < nSellWidth; x++)
+		{
+			arrTextureCoords[y][x].resize(4);
+			for (int i = 0; i < 4; i++)
+			{
+				fscanf(pFile, "%f %f ", &arrTextureCoords[y][x][i].u, &arrTextureCoords[y][x][i].v);
+				printf("%f %f ", arrTextureCoords[y][x][i].u, arrTextureCoords[y][x][i].v);
+			}
+			printf("\n");
+		}
+	}
+	fclose(pFile);
+}
+
+
+
+int x = 0;
+int y = 0;
 void DrawBillboard()
 {
 	// 알파채널을 사용해서 투명텍스처 효과를 낸다
@@ -299,13 +353,41 @@ void DrawBillboard()
 	};
 
 	// 빌보드 정점
-	MYVERTEX vtx[4] = 
+	/*MYVERTEX vtx[4] = 
 	{ 
-		{ -1,  0, 0, 0, 1 },
-		{ -1,  4, 0, 0, 0 },
-		{  1,  0, 0, 1, 1 },
-		{  1,  4, 0, 1, 0 }
+		{ -1,  0, 0, 0, 1 },//tl
+		{ -1,  4, 0, 0, 0 },//bl
+		{  1,  0, 0, 1, 1 },//tr
+		{  1,  4, 0, 1, 0 } //br
+	};*/
+	//a b
+	//c d
+	MYVERTEX vtx[4] =
+	{
+		{ -1,  0, 0, 0, 0.25 },
+		{ -1,  1, 0, 0, 0 },
+		{  1,  0, 0, 0.25, 0.25 },
+		{  1,  1, 0, 0.25, 0 }
 	};
+
+	if (x < 4)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			vtx[i].tu = arrTextureCoords[y][x][i].u;
+			vtx[i].tv = arrTextureCoords[y][x][i].v;
+		}
+		x++;
+	}
+	else
+	{
+		x = 0;
+		if (y < 3) y++;
+		else y = 0;
+	}
+	
+	g_pLog->Log("[%d][%d]TL(%f,%f),TR(%f,%f),BL(%f,%f),BR(%f,%f)", x, y, vtx[0].tu, vtx[0].tv, vtx[2].tu, vtx[2].tv, vtx[1].tu, vtx[1].tv, vtx[3].tu, vtx[3].tv);
+
 	D3DXMATRIXA16	matBillboard;
 	D3DXMatrixIdentity( &matBillboard );
 
@@ -313,15 +395,25 @@ void DrawBillboard()
 	g_pd3dDevice->SetTexture( 1, NULL );
 	g_pd3dDevice->SetFVF( MYVERTEX::FVF );
 
+
 	if( g_bBillboard )
 	{
 		// Y축 회전행렬은 _11, _13, _31, _33번 행렬에 회전값이 들어간다
 		// 카메라의 Y축 회전행렬값을 읽어서 역행렬을 만들면 X,Z축이 고정된
 		// Y축 회전 빌보드 행렬을 만들수 있다
-		matBillboard._11 = g_pCamera->GetViewMatrix()->_11;
+		/*matBillboard._11 = g_pCamera->GetViewMatrix()->_11;
 		matBillboard._13 = g_pCamera->GetViewMatrix()->_13;
 		matBillboard._31 = g_pCamera->GetViewMatrix()->_31;
-		matBillboard._33 = g_pCamera->GetViewMatrix()->_33;
+		matBillboard._33 = g_pCamera->GetViewMatrix()->_33;*/
+		//회전축 동기화
+		for (int y = 0; y < 3; y++)
+		{
+			for (int x = 0; x < 3; x++)
+			{
+				matBillboard.m[y][x] = g_pCamera->GetBillMatrix()->m[y][x];
+			}
+		}
+
 		D3DXMatrixInverse( &matBillboard, NULL, &matBillboard );
 	}
 
@@ -359,7 +451,7 @@ VOID Render()
     /// 렌더링 시작
     if( SUCCEEDED( g_pd3dDevice->BeginScene() ) )
     {
-		g_pWater->Draw();
+		//g_pWater->Draw();
 
 		DrawBillboard();
 		/// 렌더링 종료
@@ -367,6 +459,7 @@ VOID Render()
     }
 
     /// 후면버퍼를 보이는 화면으로!
+	Sleep(500);
     g_pd3dDevice->Present( NULL, NULL, NULL, NULL );
 }
 
@@ -427,7 +520,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 	g_hwnd = hWnd;
 
 	srand( GetTickCount() );
-
+	InitTextureCoords();
     /// Direct3D 초기화
     if( SUCCEEDED( InitD3D( hWnd ) ) )
     {

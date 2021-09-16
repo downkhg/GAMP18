@@ -19,18 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="define.h" />
-    <ClInclude Include="ZCamera.h" />
-    <ClInclude Include="ZFLog.h" />
-    <ClInclude Include="ZWater.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="ZCamera.cpp" />
-    <ClCompile Include="ZFLog.cpp" />
-    <ClCompile Include="ZWater.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <Image Include="ExplosionEffect.png" />
     <Image Include="tex.jpg" />
     <Image Include="tree01S.dds" />
     <Image Include="tree02S.dds" />
@@ -38,6 +27,22 @@
     <Image Include="tree35S.dds" />
     <Image Include="water1.bmp" />
     <Image Include="water2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="UVAnimationMaker.cpp" />
+    <ClCompile Include="ZCamera.cpp" />
+    <ClCompile Include="ZFLog.cpp" />
+    <ClCompile Include="ZWater.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="texCoords.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="define.h" />
+    <ClInclude Include="ZCamera.h" />
+    <ClInclude Include="ZFLog.h" />
+    <ClInclude Include="ZWater.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
