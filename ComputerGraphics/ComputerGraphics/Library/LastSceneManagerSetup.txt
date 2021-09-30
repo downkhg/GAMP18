@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/RenderTexture.unity
+- path: Assets/Scenes/Billboard.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
