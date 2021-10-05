@@ -8,7 +8,9 @@ public class Responner : MonoBehaviour
     public float m_fTime = 1;
     IEnumerator ProcessTime()
     {
+        Debug.Log("Death:" + objPlayer.name);
         yield return new WaitForSeconds(m_fTime);
+        Debug.Log("Respon:"+objPlayer.name);
         objPlayer.SetActive(true);
         objPlayer.transform.position = this.transform.position;
     }

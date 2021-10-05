@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == m_strTargetTag)
         {
-            other.gameObject.SetActive(false);
+            other.transform.parent.gameObject.SetActive(false);
         }
     }
 }
