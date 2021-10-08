@@ -167,7 +167,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!4 &590627729
 Transform:
@@ -554,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPlayer: {fileID: 929733746}
   m_fTime: 1
+  m_isRespon: 0
 --- !u!4 &984486541
 Transform:
   m_ObjectHideFlags: 0
@@ -675,6 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPlayer: {fileID: 590627726}
   m_fTime: 1
+  m_isRespon: 0
 --- !u!4 &1085118688
 Transform:
   m_ObjectHideFlags: 0
@@ -942,7 +944,7 @@ GameObject:
   - component: {fileID: 1520493658}
   - component: {fileID: 1520493657}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: StartPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

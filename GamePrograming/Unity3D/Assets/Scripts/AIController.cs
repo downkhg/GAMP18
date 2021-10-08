@@ -16,6 +16,7 @@ public class AIController : Controller
     public E_AI_STATE m_eCurState;
     public void SetState(E_AI_STATE state)
     {
+        Debug.Log("SetState:"+state);
         switch (state)
         {
             case E_AI_STATE.FIND:
@@ -26,6 +27,8 @@ public class AIController : Controller
             case E_AI_STATE.MOVE:
                 break;
             case E_AI_STATE.ATTACK:
+                m_fCurTime = 0;
+                m_dynamicPlayer.Shot(m_strTargetTag);
                 break;
         }
         m_eCurState = state;
@@ -36,8 +39,8 @@ public class AIController : Controller
         switch (m_eCurState)
         {
             case E_AI_STATE.FIND:
-                //if (FindTargetProcess(m_strTargetTag))
-                //    SetState(E_AI_STATE.LOOKAT);
+                if(m_objTarget)
+                    SetState(E_AI_STATE.LOOKAT);
                 break;
             case E_AI_STATE.LOOKAT:
                 SetState(E_AI_STATE.MOVE);
@@ -47,7 +50,9 @@ public class AIController : Controller
                 {
                     if (ProcessMove() == false)
                         SetState(E_AI_STATE.ATTACK);
-                }     
+                }
+                else
+                    SetState(E_AI_STATE.FIND);
                 break;
             case E_AI_STATE.ATTACK:
                 if (m_objTarget)
@@ -87,13 +92,13 @@ public class AIController : Controller
         {
             if (!m_isMove)
             {
-                //if (m_fCurTime >= 0)
-                m_fCurTime += Time.deltaTime;
+                if (m_fCurTime >= 0)
+                    m_fCurTime += Time.deltaTime;
 
                 //0~0.9 0
                 if (m_fCurTime >= m_fMaxTime)
                 {
-                    Debug.Log("ShotTime!!");
+                    //Debug.Log("ShotTime!!");
                     m_dynamicPlayer.Shot(m_strTargetTag);
                     m_fCurTime -= m_fMaxTime;
                 }
@@ -127,7 +132,7 @@ public class AIController : Controller
         Vector3 vTargetPos = m_objTarget.transform.position;
         vTargetPos.y = 0;
         //Debug.Log("LookAtTarget:"+m_objTarget.name);
-        transform.LookAt(vTargetPos);
+        transform.LookAt(m_objTarget.transform.parent);
     }
 
     public bool FindTargetProcess(string TargetTag)
@@ -149,19 +154,15 @@ public class AIController : Controller
 
     private void FixedUpdate()
     {
-        if (FindTargetProcess(m_strTargetTag))
+        if (!FindTargetProcess(m_strTargetTag))
         {
-            SetState(E_AI_STATE.MOVE);
-        }
-        else
             m_objTarget = null;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateState();
-        if (!m_objTarget)
-            SetState(E_AI_STATE.FIND);
     }
 }

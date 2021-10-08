@@ -17,7 +17,7 @@ public class PlayerContoller : Controller
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            m_dynamicPlayer.Jump(GetComponent<Rigidbody>());
+            m_dynamicPlayer.Jump(GetComponent<SimpleRigidBody>());
         }
 
         if (Input.GetKeyDown(KeyCode.X))

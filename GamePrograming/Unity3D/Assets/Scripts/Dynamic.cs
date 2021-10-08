@@ -17,6 +17,15 @@ public class Dynamic : MonoBehaviour
         }
     }
 
+    public void Jump(SimpleRigidBody rigidbody)
+    {
+        //if (m_isJump == false)
+        {
+            rigidbody.AddForce(Vector3.up,m_fJumpPower);
+            m_isJump = true;
+        }
+    }
+
     public float Move(Transform tr, Vector3 dir)
     {
         float fMove = m_fSpeed * Time.deltaTime;
@@ -28,6 +37,4 @@ public class Dynamic : MonoBehaviour
     {
         m_cCannon.Shot(TargetTag);
     }
-
-    
 }
