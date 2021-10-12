@@ -57,7 +57,7 @@ public class SimpleRigidBody : MonoBehaviour
         //물체의 위치가 이동한 뒤에는 이미 바닥에 꺼져있을수도 있으므로
         //미래의 위치를 충돌체크해 상태를 판단한다.
         Ray ray = new Ray(transform.position, m_vVelocity.normalized);
-        Debug.DrawLine(ray.origin, vPos + ray.direction,Color.red);
+        //Debug.DrawLine(ray.origin, vPos + ray.direction,Color.red);
         float fDist = m_vVelocity.magnitude * fTime;
         RaycastHit raycastHit;
         Vector3 vGroundPos = ray.origin;

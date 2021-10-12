@@ -83,6 +83,45 @@ public class AIController : Controller
         GUI.Box(new Rect(0, 20, 100, 20), "State:" + m_eCurState);
     }
 
+    bool ArcColCheck(Transform target, Vector3 forword, float angle, float rad)
+    {
+        Vector3 vPos = transform.position;
+        Vector3 vTargetPos = target.position;
+        Vector3 vTargetDist = vTargetPos - vPos;
+        float fDist = vTargetDist.magnitude;
+        float fHalfAngle = angle * 0.5f;
+        
+        float fAngle = Vector3.Angle(forword, vTargetDist.normalized);
+
+        Vector3 vRight = forword;
+        Vector3 vLeft = forword;
+
+        Quaternion qRotR = Quaternion.AngleAxis(fHalfAngle, Vector3.up);
+        Quaternion qRotL = Quaternion.AngleAxis(fHalfAngle, Vector3.down);
+
+        vRight = qRotR * vRight;
+        vLeft = qRotL * vLeft;
+
+        Vector3 vStartForword = vPos;
+        Vector3 vEndForword = vStartForword + forword * rad;
+        Debug.DrawLine(vStartForword, vEndForword, Color.blue);
+
+        Vector3 vStartRight = vPos;
+        Vector3 vEndRight = vStartRight + vRight * rad;
+        Debug.DrawLine(vStartRight, vEndRight, Color.red);
+
+        Vector3 vStartLeft = vPos;
+        Vector3 vEndLeft = vStartLeft + vLeft * rad;
+        Debug.DrawLine(vStartLeft, vEndLeft, Color.red);
+
+        Debug.DrawLine(vPos, vTargetPos, Color.green);
+
+        if (fDist <= rad && fAngle <= fHalfAngle)
+            return true;
+
+        return false;
+    }
+
     public float m_fCurTime = -1;
     public float m_fMaxTime = 1;
 
@@ -143,9 +182,12 @@ public class AIController : Controller
         {
             if (collideres[i].tag == TargetTag)
             {
-                m_objTarget = collideres[i].gameObject;
-                LookAtTarget();
-                return true;
+                if (ArcColCheck(collideres[i].transform, transform.forward, 90, m_fSite))
+                {
+                    m_objTarget = collideres[i].gameObject;
+                    LookAtTarget();
+                    return true;
+                }
             }
         }
         
@@ -156,6 +198,8 @@ public class AIController : Controller
     {
         if (!FindTargetProcess(m_strTargetTag))
         {
+            
+
             m_objTarget = null;
         }
     }
