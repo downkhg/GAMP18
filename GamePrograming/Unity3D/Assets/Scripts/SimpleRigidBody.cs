@@ -3,7 +3,7 @@
 public class SimpleRigidBody : MonoBehaviour
 {
     public float m_fGravity = 9.8f;
-    public Vector3 m_fGravityDir = Vector3.down;
+    public Vector3 m_vGravityDir = Vector3.down;
     public Vector3 m_vVelocity;
 
     public bool m_isGround = false;
@@ -49,7 +49,7 @@ public class SimpleRigidBody : MonoBehaviour
         Vector3 vGravity = new Vector3();
         if (!isCollision && !m_isGround)
         {
-            vGravity = m_fGravityDir * m_fGravity * fTime;
+            vGravity = m_vGravityDir * m_fGravity * fTime;
         }
         m_vVelocity += vGravity;
         transform.position += m_vVelocity * fTime;
@@ -88,13 +88,41 @@ public class SimpleRigidBody : MonoBehaviour
         }
     }
 
+    //void ProcessGravity()
+    //{
+    //    Vector3 vPos = transform.position;
+    //    Vector3 vGravity = Vector3.zero;
+    //    vGravity = m_vGravityDir * m_fGravity;
+    //    m_vVelocity += vGravity;
+    //    float fTime = 0.5f;
+
+    //    float fGravityDist = m_fGravity * fTime;
+    //    RaycastHit[] raycastHits = Physics.RaycastAll(vPos, m_vGravityDir, fGravityDist);
+
+    //    bool isGravity = true;
+    //    foreach(var hit in raycastHits)
+    //    {
+    //        if(hit.transform.tag != transform.tag)
+    //        {
+    //            isGravity = false;
+    //            Debug.DrawLine(vPos, vPos + m_vGravityDir * fGravityDist, Color.red);
+    //            break;
+    //        }
+    //        else
+    //            Debug.DrawLine(vPos, vPos + m_vGravityDir * fGravityDist, Color.green);
+    //    }
+
+    //    //if(isGravity)
+    //    //    transform.position += m_vVelocity * Time.deltaTime;
+    //}
+
     private void OnDrawGizmos()
     {
         //Gizmos.DrawSphere(this.transform.position, m_fGravity * Time.deltaTime);
         float rad = 0.5f;
         Vector3 vPosDown = transform.position;// + Vector3.up * rad;
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(vPosDown, rad);
+        //Gizmos.DrawWireSphere(vPosDown, rad);
     }
 
     void ProcessNoCollisionGravity(float groundY)
@@ -105,7 +133,7 @@ public class SimpleRigidBody : MonoBehaviour
         if (vPos.y >= groundY)
         {
             if (vPos.y > groundY)
-                m_vVelocity += m_fGravityDir * m_fGravity * fDeltaTime;
+                m_vVelocity += m_vGravityDir * m_fGravity * fDeltaTime;
 
             transform.position += m_vVelocity * fDeltaTime;
         }

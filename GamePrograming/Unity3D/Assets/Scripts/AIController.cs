@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 //찾기->발견(회전)->이동->사거리->공격->타겟X->찾기
 public class AIController : Controller
 {
     public GameObject m_objTarget;
     public float m_fSite;
+    public float m_fSiteAngle;
+
     public float m_fShotDist;
     public float m_fTime;
 
@@ -154,7 +157,8 @@ public class AIController : Controller
 
         if (m_fShotDist < Vector3.Distance(vTarget, vPos))
         {
-            m_dynamicPlayer.Move(transform, Vector3.forward);
+            //m_dynamicPlayer.Move(transform, Vector3.forward);
+            GetComponent<NavMeshAgent>().SetDestination(vTarget);
             m_isMove = true;
             return true;
         }
@@ -182,7 +186,7 @@ public class AIController : Controller
         {
             if (collideres[i].tag == TargetTag)
             {
-                if (ArcColCheck(collideres[i].transform, transform.forward, 90, m_fSite))
+                if (ArcColCheck(collideres[i].transform, transform.forward, m_fSiteAngle, m_fSite))
                 {
                     m_objTarget = collideres[i].gameObject;
                     LookAtTarget();
