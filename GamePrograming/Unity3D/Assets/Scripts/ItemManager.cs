@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Item
 {
     public enum eItemKind { Weapon, Armor, Acc, Potion, Throw }
@@ -13,11 +14,15 @@ public class Item
         m_sFunc = sStatus;
         m_nGold = nGold;
     }
-
+    [SerializeField]
     eItemKind m_eItemKind;
+    [SerializeField]
     string m_strName;
+    [SerializeField]
     string m_strComment;
+    [SerializeField]
     Status m_sFunc;
+    [SerializeField]
     int m_nGold;
 
     public eItemKind ItemKind //Setter,Getter

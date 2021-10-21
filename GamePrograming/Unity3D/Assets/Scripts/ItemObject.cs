@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
+    [SerializeField]
     Item m_cItem;
 
     public Item Item
@@ -22,5 +23,22 @@ public class ItemObject : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("1.OnTriggerEnter:"+other.gameObject.name);
+        if (other.gameObject.tag == "Player")
+        {
+            GameObject objPlayer = other.gameObject;
+            Player player = objPlayer.GetComponent<Player>();
+            Debug.Log("2.OnTriggerEnter:" + other.gameObject.name);
+            if (player)
+            {
+                Debug.Log("3.OnTriggerEnter:" + other.gameObject.name);
+                player.SetInvetory(m_cItem);
+                Destroy(gameObject);
+            }
+        }
     }
 }

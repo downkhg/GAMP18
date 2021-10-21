@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
         return m_instance;
     }
 
+    private void Awake()
+    {
+        m_instance = this;
+    }
+
     public ItemManager GetItemManager() { return m_cItemManager; }
 
     public void ItemGenerator(Vector3 pos)
@@ -31,7 +36,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_instance = this;
+        m_cItemManager = GetComponent<ItemManager>();
+        m_listItemObject[0].Item = 
+            m_cItemManager.GetItem(ItemManager.eItem.BoneSword);
     }
 
     // Update is called once per frame

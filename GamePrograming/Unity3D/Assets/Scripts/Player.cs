@@ -53,7 +53,9 @@ public class Player : MonoBehaviour
 
     int m_nGold; //소지금
 
+    [SerializeField]
     List<Item> m_listIventory = new List<Item>(); //인벤토리.
+    [SerializeField]
     List<Item> m_listEqument = new List<Item>((int)eEqumentKind.MAX); //장비함.
     public enum eEqumentKind { Weapon, Armor, Acc, MAX }
 

@@ -42,7 +42,7 @@ public class SimpleRigidBody : MonoBehaviour
 
         if (colliders.Length > 0)
         {
-            Debug.Log("collider:" + colliders[0].name);
+            //Debug.Log("collider:" + colliders[0].name);
             isCollision = true;
         }
 
@@ -78,13 +78,13 @@ public class SimpleRigidBody : MonoBehaviour
         {
             m_isGround = true;
             SetEnterGround(transform.position, m_vGroudPos.y);
-            Debug.Log("Ground Enter!");
+            //Debug.Log("Ground Enter!");
         }
         //Exit: 이전상태가 충돌되고, 다음상태가 충돌되지않음.
         else if (isCollision && !isNextCollision)
         {
             m_isGround = false;
-            Debug.Log("Ground Exit!");
+            //Debug.Log("Ground Exit!");
         }
     }
 
