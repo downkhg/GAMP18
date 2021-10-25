@@ -18,6 +18,22 @@ public class GameManager : MonoBehaviour
         return m_instance;
     }
 
+    public Controller GetController(int idx)
+    {
+        if (idx < m_listController.Count)
+            return m_listController[idx];
+        else
+            return null;
+    }
+
+    public Player GetPlayer(int idx)
+    {
+        if (idx < m_listController.Count)
+            return m_listController[idx].m_dynamicPlayer.GetComponent<Player>();
+        else
+            return null;
+    }
+
     private void Awake()
     {
         m_instance = this;
@@ -36,9 +52,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("GameManager::Start()");
         m_cItemManager = GetComponent<ItemManager>();
         m_listItemObject[0].Item = 
             m_cItemManager.GetItem(ItemManager.eItem.BoneSword);
+
+        for (int i = 0; i < (int)ItemManager.eItem.MAX; i++)
+        {
+            GetPlayer(0).SetInvetory(m_cItemManager.GetItem((ItemManager.eItem)i));
+        }
+
     }
 
     // Update is called once per frame
